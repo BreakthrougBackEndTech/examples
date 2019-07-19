@@ -112,7 +112,7 @@ sudo kubectl cp /mnt/myshare/storm-1.0-SNAPSHOT.jar storm-test:/opt/apache-storm
 b. 登录到storm-test并运行strom 命令
 ```console
 luffy@luffy-VirtualBox:~/storm/docker$ sudo kubectl exec -it storm-test -- /bin/bash
-root@storm-test:/opt/apache-storm#./bin/storm jar storm-1.0-SNAPSHOT.jar Topology wordcount
+root@storm-test:/opt/apache-storm# ./bin/storm jar storm-1.0-SNAPSHOT.jar Topology wordcount
 ...
 root@storm-test:/opt/apache-storm# ./bin/storm list
 Running: /usr/local/openjdk-8/bin/java -client -Ddaemon.name= -Dstorm.options= -Dstorm.home=/opt/apache-storm -Dstorm.log.dir=/opt/apache-storm/logs -Djava.library.path=/usr/local/lib:/opt/local/lib:/usr/lib:/usr/lib64 -Dstorm.conf.file= -cp /opt/apache-storm/*:/opt/apache-storm/lib/*:/opt/apache-storm/extlib/*:/opt/apache-storm/extlib-daemon/*:/opt/apache-storm/conf:/opt/apache-storm/bin org.apache.storm.command.ListTopologies
