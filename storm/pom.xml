@@ -17,7 +17,7 @@
             <artifactId>storm-core</artifactId>
             <version>2.0.0</version>
             <!--远程执行需要 scope=provided -->
-            <!--<scope>provided</scope>-->
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
