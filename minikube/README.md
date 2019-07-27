@@ -2,32 +2,39 @@
 
 #### 1. 安装Oracle VM VirtualBox
 ![image](img/virtualbox.jpg)
-[VirtualBox](https://download.virtualbox.org/virtualbox/5.2.6/VirtualBox-5.2.6-120293-Win.exe)
+
+[VirtualBox下载地址](https://download.virtualbox.org/virtualbox/5.2.6/VirtualBox-5.2.6-120293-Win.exe)
 
 #### 2. 使用VirtualBox创建Ubuntu虚拟机
 ![image](img/createUbuntu1.jpg)
+
 ![image](img/createUbuntu2.jpg)
 
 #### 3. 下载Ubuntu镜像
-[ubuntu-16.04.3-desktop-amd64.iso](http://old-releases.ubuntu.com/releases/16.04.3/ubuntu-16.04.3-desktop-amd64.iso)
+[ubuntu-16.04.3-desktop-amd64.iso下载地址](http://old-releases.ubuntu.com/releases/16.04.3/ubuntu-16.04.3-desktop-amd64.iso)
 
 
 #### 4. 启动yourname虚拟机
 会弹出如下窗口，选择本地下载的ubuntu-16.04.3-desktop-amd64.iso, 然后点启动
+
 ![image](img/startUbuntu1.jpg)
 
 语言选择中文，点击安装Ubuntu按钮
+
 ![image](img/startUbuntu2.jpg)
 
 都选下一步，设置用户名，密码，然后继续下一步
+
 ![image](img/startUbuntu3.jpg)
 
 需要等待一会，会有安装完成，重启的提示，点击重启。
 重启完成后通过sudo passwd 设置root密码 
+
 ![image](img/startUbuntu4.jpg)
 
 #### 5. 设置代理
 ![image](img/proxy1.jpg)
+
 ![image](img/proxy2.jpg)
 
 docker替换方案
@@ -43,13 +50,16 @@ minikube替换方案
 
 #### 6. 共享粘贴板和文件夹
 点击VirtualBox软件的“设备”，在弹出设备菜单里点击“共享粘贴板“，在其弹出菜单栏点击“双向”
+
 ![image](img/share1.jpg)
 
 点击共享文件夹
+
 ![image](img/share3.jpg)
 
 点击VirtualBox软件的“设备”，在弹出设备菜单里点击“安装增强功能”
-![image](img/share2.jpg)
+
+[image](img/share2.jpg)
 
 需要重启虚拟机, 通过如下命令挂载共享文件夹
 ```sh
@@ -77,6 +87,7 @@ yourname@yourname-VirtualBox:~$ history
 ```
 
 显示如下界面docker安装成功
+
 ![image](img/dockersuccess.jpg)
 
 设置代理（可选的）
