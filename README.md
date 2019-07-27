@@ -5,3 +5,9 @@
 
 ### Storm k8s
     storm 2.0.0 版本的docker images和k8s集成
+    
+### Minikube
+    Windows上搭建k8s单机环境 minkube
+    
+微信公众号
+![image](/minikube/img/weixin.jpg)
