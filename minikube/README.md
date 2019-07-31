@@ -111,7 +111,7 @@ sudo systemctl restart docker
 参考最新[官方安装文档](https://kubernetes.io/docs/tasks/tools/install-minikube/)，安装老是有问题，
 估计是新版本还不稳定,喜欢捣鼓的童靴可以尝试一下. 所以这里采用之前稳定的版本。minikube v0.24.0 和kubeclt v1.93.0
 
-##### a. 下载 kubeclt.zip解压， 通过共享文件夹传到虚拟机里面
+##### a. 下载  [kubeclt.zip](https://github.com/BreakthrougBackEndTech/examples/blob/master/minikube/kubectl.zip)  解压， 通过共享文件夹传到虚拟机里面
 ```
 sudo mount -t vboxsf sharefolder /mnt/myshared
 cp /mnt/myshared/kubectl .
