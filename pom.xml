@@ -11,6 +11,7 @@
 
     <modules>
         <module>storm</module>
+        <module>jianzhioffer</module>
     </modules>
 
     <build>

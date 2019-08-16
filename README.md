@@ -8,6 +8,9 @@
     
 ### Minikube
     Windows上搭建k8s单机环境 minkube
+
+### JianZhiOffer
+    剑指offer算法实现， 提升内功
     
 微信公众号
 ![image](/minikube/img/weixin.jpg)
