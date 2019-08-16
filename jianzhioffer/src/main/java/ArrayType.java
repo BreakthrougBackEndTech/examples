@@ -53,6 +53,29 @@ public class ArrayType {
         }
 
         return list;
+        
+         //最高效的算法
+        /*List<Integer> ret = new ArrayList<>();
+        int n = nums.length;
+        for (int i=0; i<n; i++) {
+            int a = (nums[i]-1) % n;
+            nums[a] += n;
+        }
+        for (int i=0; i<n; i++) {
+            if (nums[i] > 2*n) ret.add(i+1);
+        }
+        return ret;*/
+
+        //使用数组比使用包装类更快
+        /*int[] burket = new int[nums.length+1];
+        for(int i=0; i<nums.length; i++) {
+            burket[nums[i]]++;
+        }
+        ArrayList<Integer> list = new ArrayList<>();
+        for(int i=0; i<nums.length+1; i++) {
+            if(burket[i] == 2) list.add(i);
+        }
+        return list;*/
     }
 }
 
