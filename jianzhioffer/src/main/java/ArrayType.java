@@ -117,6 +117,104 @@ public class ArrayType {
         
         return array.length;  
     }
+
+   /**
+    在未排序的数组中找到第 k 个最大的元素。请注意，你需要找的是数组排序后的第 k 个最大的元素，而不是第 k 个不同的元素。
+
+    示例 1:
+
+    输入: [3,2,1,5,6,4] 和 k = 2
+    输出: 5
+    示例 2:
+
+    输入: [3,2,3,1,2,4,5,5,6] 和 k = 4
+    输出: 4
+    说明:
+
+    你可以假设 k 总是有效的，且 1 ≤ k ≤ 数组的长度。
+
+    来源：力扣（LeetCode）
+    链接：https://leetcode-cn.com/problems/kth-largest-element-in-an-array
+    著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。*/
+
+
+   public int findKthLargest(int[] nums, int k) {
+      /*  PriorityQueue<Integer> pq = new PriorityQueue();
+        for(int i : nums){
+            pq.add(i);
+
+            if(pq.size() > k){
+                pq.poll();
+            }
+        }
+        return pq.peek();*/
+
+       return findK(nums, k - 1, 0, nums.length - 1);
+   }
+
+    public int findK(int[] nums, int k, int start, int end) {
+        int low = start;
+        int high = end;
+        int pivot = nums[(low + high) / 2];
+        while (low <= high) {
+            while (nums[high] < pivot) {
+                high--;
+            }
+
+            while (nums[low] > pivot) {
+                low++;
+            }
+
+            if (low <= high) {
+                int temp = nums[low];
+                nums[low] = nums[high];
+                nums[high] = temp;
+
+                low++;
+                high--;
+            }
+        }
+
+        if (start < high && k <= high)
+            return findK(nums, k, start, high);
+        // 这时如果左指针还小于等于k，说明kth在右半边
+        if (low < end && k >= low)
+            return findK(nums, k, low, end);
+        return nums[k];
+    }
+
+
+    /**
+     * 快速排序
+     * @param nums
+     * @param left
+     * @param right
+     */
+    public void quickSort(int[] nums, int left, int right) {
+        int i, j, t, temp;
+        if (left > right)
+            return;
+        temp = nums[left]; //temp中存的就是基准数
+        i = left;
+        j = right;
+        while (i != j) { //顺序很重要，要先从右边开始找
+            while (nums[j] >= temp && i < j)
+                j--;
+            while (nums[i] <= temp && i < j)//再找右边的
+                i++;
+            if (i < j)//交换两个数在数组中的位置
+            {
+                t = nums[i];
+                nums[i] = nums[j];
+                nums[j] = t;
+            }
+        }
+        //最终将基准数归位
+        nums[left] = nums[i];
+        nums[i] = temp;
+        quickSort(nums, left, i - 1);//继续处理左边的，这里是一个递归的过程
+        quickSort(nums, i + 1, right);//继续处理右边的 ，这里是一个递归的过程
+    }
     
 }
 

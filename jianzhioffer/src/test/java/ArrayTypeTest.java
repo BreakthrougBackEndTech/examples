@@ -1,7 +1,9 @@
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.PriorityQueue;
 
 public class ArrayTypeTest {
 
@@ -23,13 +25,22 @@ public class ArrayTypeTest {
         Assert.assertEquals(1, resultList.size());
         Assert.assertTrue(resultList.contains(2));
 */
-        resultList = arrayType.findDuplicates(new int[]{10,2,5,10,9,1,1,4,3,7});
+        resultList = arrayType.findDuplicates(new int[]{10, 2, 5, 10, 9, 1, 1, 4, 3, 7});
         Assert.assertEquals(2, resultList.size());
         Assert.assertTrue(resultList.contains(10));
         Assert.assertTrue(resultList.contains(1));
 
 
     }
+
+
+    @Test
+    public void findKthLargest() {
+        int[] nums = new int[]{3, 2, 3, 1, 2, 4, 5, 5, 6};
+
+        ArrayType arrayType = new ArrayType();
+        Assert.assertEquals(4, arrayType.findKthLargest(nums, 4));
+     }
 
 
 }
