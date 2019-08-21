@@ -1,4 +1,4 @@
-package feature18;
+package feature18.future;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
