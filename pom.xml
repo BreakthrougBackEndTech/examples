@@ -12,6 +12,7 @@
     <modules>
         <module>storm</module>
         <module>jianzhioffer</module>
+        <module>java18study</module>
     </modules>
 
     <build>

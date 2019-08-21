@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @description:
@@ -45,6 +46,8 @@ public class ArrayType {
         }
 
         List<Integer> list = new ArrayList<>();
+
+//        return set.stream().map(x->x+1).collect(Collectors.toList());
 
         for (Integer i : set) {
             list.add(i + 1);
