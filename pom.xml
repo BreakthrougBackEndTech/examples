@@ -13,6 +13,7 @@
         <module>storm</module>
         <module>jianzhioffer</module>
         <module>java18study</module>
+        <module>design-mode</module>
     </modules>
 
     <build>
