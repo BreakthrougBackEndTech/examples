@@ -10,9 +10,7 @@ import simplefactory.Operation;
 public class Client {
     public static void main(String[] args) {
         IFactory factory = new AddFactory();
-
         Operation operation = factory.createOperation();
-
         operation.calc(1, 2);
     }
 }
