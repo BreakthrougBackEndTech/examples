@@ -89,4 +89,14 @@ public class ArrayTypeTest {
     }
 
 
+    @Test
+    public void minIncrementForUnique(){
+        int[] A = new int[]{1,2,2};
+
+        ArrayType arrayType = new ArrayType();
+        Assert.assertEquals(1, arrayType.minIncrementForUnique(A));
+
+    }
+
+
 }
