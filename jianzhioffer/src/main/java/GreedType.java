@@ -1,3 +1,6 @@
+import java.util.Arrays;
+import java.util.Comparator;
+
 /**
  * @author: zhegong
  **/
@@ -13,7 +16,6 @@ public class GreedType {
      在使用任意数量的令牌后，返回我们可以得到的最大分数。
 
       
-
      示例 1：
 
      输入：tokens = [100], P = 50
@@ -39,7 +41,20 @@ public class GreedType {
      著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
      */
     public int bagOfTokensScore(int[] tokens, int P) {
+        int res = 0, point = 0, left = 0, right = tokens.length - 1;
+        Arrays.sort(tokens);
+        while (left <= right) {
 
-        return 0;
+            if (P >= tokens[left]) {
+                P -= tokens[left++];
+                res = Math.max(res, ++point);
+            } else if (point > 0) {
+                P += tokens[right--];
+                point--;
+            } else {
+                break;
+            }
+        }
+        return res;
     }
 }
