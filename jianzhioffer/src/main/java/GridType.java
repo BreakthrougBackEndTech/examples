@@ -55,15 +55,15 @@ public class GridType {
                     int p2 = find(parents, j);
 
                     if (p1 != p2) {
-             /*           if(rank[p1] < rank[p2]){
-                            parents[p1] = p2;
-                        }else{
+             /*           if(rank[p1] > rank[p2]){
                             parents[p2] = p1;
+                        }else{
+                            parents[p1] = p2;
                             if(rank[p1] == rank[p2]){
-                                rank[p1]++;
+                                rank[p2]++;
                             }
                         }*/
-                        parents[p1] = p2;
+                        parents[p2] = p1;
                         count++;
                     }
                 }
