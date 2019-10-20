@@ -260,5 +260,86 @@ public class ArrayType {
       return count;
   }
 
+    /**
+     * 假设按照升序排序的数组在预先未知的某个点上进行了旋转。
+
+     ( 例如，数组 [0,1,2,4,5,6,7] 可能变为 [4,5,6,7,0,1,2] )。
+
+     请找出其中最小的元素。
+
+     你可以假设数组中不存在重复元素。
+
+     示例 1:
+
+     输入: [3,4,5,1,2]
+     输出: 1
+     示例 2:
+
+     输入: [4,5,6,7,0,1,2]
+     输出: 0
+
+     来源：力扣（LeetCode）
+     链接：https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array
+     著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+     */
+    public int findMin(int[] nums) {
+        int min = Math.min(nums[0], nums[nums.length -1]);
+        int left = 0, right = nums.length-1;
+        while(left < right) {
+
+            int middle = (left + right+1) / 2;
+
+            if (nums[middle] < min) {
+                min = nums[middle];
+                right = middle;
+            } else {
+                left = middle;
+            }
+        }
+
+        return min;
+    }
+
+
+    /**
+     题目描述
+     把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。
+     输入一个非递减排序的数组的一个旋转，输出旋转数组的最小元素。
+     例如数组{3,4,5,1,2}为{1,2,3,4,5}的一个旋转，该数组的最小值为1。
+     NOTE：给出的所有元素都大于0，若数组大小为0，请返回0。
+     */
+    public int minNumberInRotateArray(int [] array) {
+        if(array.length == 0)
+            return 0;
+
+        int left = 0, rigth = array.length-1;
+        int middle = left;
+
+        while(array[left] >= array[rigth]){
+
+            if(rigth - left == 1){
+                middle = rigth;
+                break;
+            }
+
+            middle = (left + rigth)/2;
+
+            if(array[left] == array[rigth] && array[middle] == array[left]){
+                for(int i = left; i< rigth; i++){
+                    if(array[i] < array[middle]){
+                        middle = i;
+                    }
+                }
+            }else if(array[rigth] >= array[middle]){
+                rigth = middle;
+            }else if(array[left] <= array[middle]){
+                left = middle;
+            }
+
+        }
+
+        return array[middle];
+    }
+
 }
 

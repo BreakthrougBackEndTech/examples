@@ -99,4 +99,16 @@ public class ArrayTypeTest {
     }
 
 
+    @Test
+    public void findMin(){
+        int[] nums = new int[]{4,5,6,7,0,1,2};
+
+        ArrayType arrayType = new ArrayType();
+        Assert.assertEquals(0, arrayType.findMin(nums));
+
+        nums = new int[]{3,1,2};
+        Assert.assertEquals(1, arrayType.findMin(nums));
+    }
+
+
 }

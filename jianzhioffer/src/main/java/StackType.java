@@ -49,4 +49,48 @@ public class StackType {
 
         return stack.empty();
     }
+
+
+    /**
+     题目描述
+     用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为int类型。
+     */
+    Stack<Integer> stack1 = new Stack<Integer>();
+    Stack<Integer> stack2 = new Stack<Integer>();
+    public void push(int node) {
+        stack1.push(node);
+    }
+    public int pop() {
+
+        if(stack2.isEmpty()){
+            while (!stack1.isEmpty()){
+                stack2.push(stack1.pop());
+            }
+        }
+
+        return stack2.pop();
+    }
+
+    /**
+    大家都知道斐波那契数列，现在要求输入一个整数n，请你输出斐波那契数列的第n项（从0开始，第0项为0）。
+    n<=39
+     */
+    public int Fibonacci(int n) {
+        int zero = 0;
+        int one = 1;
+
+        if(n ==0)
+            return zero;
+        if(n == 1)
+            return one;
+
+        int res=0;
+        for(int i=2; i<=n; i++){
+            res = one+zero;
+            zero = one;
+            one = res;
+        }
+
+        return res;
+    }
 }
