@@ -111,4 +111,17 @@ public class ArrayTypeTest {
     }
 
 
+    @Test
+    public void hasPath(){
+        ArrayType arrayType = new ArrayType();
+        char[] matrix = "a b c e s f c s a d e e".replaceAll(" ", "").toCharArray();
+
+        char[] str = "bcced".toCharArray();
+        Assert.assertTrue(arrayType.hasPath(matrix, 3, 4, str));
+
+        str =  "abcb".toCharArray();
+        Assert.assertFalse(arrayType.hasPath(matrix, 3, 4, str));
+
+    }
+
 }
