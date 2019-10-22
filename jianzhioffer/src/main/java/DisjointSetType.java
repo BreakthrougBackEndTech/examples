@@ -1,7 +1,7 @@
 /**
  * @author: zhegong
  **/
-public class GridType {
+public class DisjointSetType {
     /**
      * 在二维平面上，我们将石头放置在一些整数坐标点上。每个坐标点上最多只能有一块石头。
      * <p>

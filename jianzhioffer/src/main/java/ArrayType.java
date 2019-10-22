@@ -120,6 +120,34 @@ public class ArrayType {
         return array.length;
     }
 
+    /**
+     * 输入n个整数，找出其中最小的K个数。例如输入4,5,1,6,2,7,3,8这8个数字，则最小的4个数字是1,2,3,4,。
+     */
+    public ArrayList<Integer> GetLeastNumbers_Solution(int [] input, int k) {
+        ArrayList<Integer> list = new ArrayList<>();
+
+        if(k > input.length)
+            return list;
+
+        Arrays.sort(input);
+
+        for(int i=0; i<k; i++){
+            list.add(input[i]);
+        }
+
+       /* PriorityQueue<Integer> pq = new PriorityQueue();
+        for(int i=0; i< input.length; i++){
+            pq.add(input[i]);
+        }
+
+        while (!pq.isEmpty() && k >0){
+            list.add(pq.poll());
+            k--;
+        }*/
+
+        return list;
+    }
+
    /**
     在未排序的数组中找到第 k 个最大的元素。请注意，你需要找的是数组排序后的第 k 个最大的元素，而不是第 k 个不同的元素。
 
@@ -340,52 +368,6 @@ public class ArrayType {
         return array[middle];
     }
 
-    /**
-     * 题目描述
-     请设计一个函数，用来判断在一个矩阵中是否存在一条包含某字符串所有字符的路径。
-     路径可以从矩阵中的任意一个格子开始，每一步可以在矩阵中向左，向右，向上，向下移动一个格子。
-     如果一条路径经过了矩阵中的某一个格子，则该路径不能再进入该格子。
-     例如 a b c e s f c s a d e e 矩阵中包含一条字符串"bcced"的路径，
-     但是矩阵中不包含"abcb"路径，因为字符串的第一个字符b占据了矩阵中的第一行第二个格子之后，
-     路径不能再次进入该格子
-     */
-    public boolean hasPath(char[] matrix, int rows, int cols, char[] str)
-    {
-        boolean[] status = new boolean[matrix.length];
-        Arrays.fill(status, true);
-        for (int row = 0; row < rows; row++) {
-            for (int col = 0; col < cols; col++) {
-                if (hasPathCore(matrix, rows, cols, str, status, row, col, 0)) {
-                    return true;
-                }
-            }
-        }
-
-        return false;
-    }
-
-    private boolean hasPathCore(char[] matrix, int rows, int cols, char[] str, boolean[] status, int row, int col, int strIndex){
-        if(strIndex == str.length){
-            return true;
-        }
-
-        boolean hasPath = false;
-        if(row >=0 && col >=0 && row < rows && col < cols && matrix[row*cols + col] == str[strIndex] && status[row*cols + col]){
-            status[row*cols + col] = false;
-            strIndex++;
-
-            hasPath = hasPathCore(matrix, rows, cols, str, status, row-1, col, strIndex)||
-                    hasPathCore(matrix, rows, cols, str, status, row, col-1, strIndex)||
-                    hasPathCore(matrix, rows, cols, str, status, row+1, col, strIndex)||
-                    hasPathCore(matrix, rows, cols, str, status, row, col+1, strIndex);
-
-            if(!hasPath){
-                status[row*cols + col] = true;
-            }
-        }
-
-        return hasPath;
-    }
 
 }
 

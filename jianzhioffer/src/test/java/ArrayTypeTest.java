@@ -33,6 +33,17 @@ public class ArrayTypeTest {
 
     }
 
+    @Test
+    public void GetLeastNumbers_Solution(){
+        int[] input = new int[]{4,5,1,6,2,7,3,8};
+
+        ArrayType arrayType = new ArrayType();
+        System.out.println(arrayType.GetLeastNumbers_Solution(input, 10));
+
+        input = new int[]{4,5,1,6,2,7,3,8};
+        System.out.println(arrayType.GetLeastNumbers_Solution(input, 4));
+    }
+
 
     @Test
     public void findKthLargest() {
@@ -108,20 +119,6 @@ public class ArrayTypeTest {
 
         nums = new int[]{3,1,2};
         Assert.assertEquals(1, arrayType.findMin(nums));
-    }
-
-
-    @Test
-    public void hasPath(){
-        ArrayType arrayType = new ArrayType();
-        char[] matrix = "a b c e s f c s a d e e".replaceAll(" ", "").toCharArray();
-
-        char[] str = "bcced".toCharArray();
-        Assert.assertTrue(arrayType.hasPath(matrix, 3, 4, str));
-
-        str =  "abcb".toCharArray();
-        Assert.assertFalse(arrayType.hasPath(matrix, 3, 4, str));
-
     }
 
 }

@@ -1,10 +1,10 @@
 import org.junit.Assert;
 import org.junit.Test;
 
-public class GridTypeTest {
+public class DisjointSetTypeTest {
     @Test
     public void removeStones() {
-        GridType gridType = new GridType();
+        DisjointSetType gridType = new DisjointSetType();
 
         int[][] stones = new int[][]{{0, 0}, {0, 1}, {1, 0}, {1, 2}, {2, 1}, {2, 2}};
         Assert.assertEquals(5, gridType.removeStones(stones));
