@@ -72,31 +72,5 @@ public class DynamicProgramType {
 
         return nums[length];
     }
-
-    public int NumberOf1(int n) {
-        int count = 0;
-
-        int positive = n;
-
-        if(n < 0){
-            positive = -n % Integer.MAX_VALUE;
-        }
-
-
-        if(positive%2 == 1)
-            count++;
-
-        while(positive/2 >0){
-            positive = positive/2;
-            if(positive%2 ==1)
-                count++;
-        }
-
-        if(n < 0){
-            count = 32 - count;
-        }
-
-        return count;
-    }
 }
 
