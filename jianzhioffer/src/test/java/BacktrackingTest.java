@@ -15,4 +15,12 @@ public class BacktrackingTest {
         Assert.assertFalse(backtracking.hasPath(matrix, 3, 4, str));
 
     }
+
+    @Test
+    public void movingCount(){
+        Backtracking backtracking = new Backtracking();
+
+        Assert.assertEquals(1, backtracking.movingCount(0, 100, 100));
+        Assert.assertEquals(3, backtracking.movingCount(1, 100, 100));
+    }
 }

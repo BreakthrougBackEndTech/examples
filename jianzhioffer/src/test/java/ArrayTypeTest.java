@@ -38,10 +38,17 @@ public class ArrayTypeTest {
         int[] input = new int[]{4,5,1,6,2,7,3,8};
 
         ArrayType arrayType = new ArrayType();
-        System.out.println(arrayType.GetLeastNumbers_Solution(input, 10));
+
+        List expectedList = new ArrayList();
+
+        Assert.assertEquals(expectedList, arrayType.GetLeastNumbers_Solution(input, 10));
 
         input = new int[]{4,5,1,6,2,7,3,8};
-        System.out.println(arrayType.GetLeastNumbers_Solution(input, 4));
+        expectedList.add(1);
+        expectedList.add(2);
+        expectedList.add(3);
+        expectedList.add(4);
+        Assert.assertEquals(expectedList, arrayType.GetLeastNumbers_Solution(input, 4));
     }
 
 

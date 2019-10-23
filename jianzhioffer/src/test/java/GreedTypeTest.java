@@ -21,4 +21,11 @@ public class GreedTypeTest {
         P = 200;
         Assert.assertEquals(2, greedType.bagOfTokensScore(tokens, P));
     }
+
+    @Test
+    public void cutRope() {
+        GreedType greedType = new GreedType();
+
+        Assert.assertEquals(18, greedType.cutRope(8));
+    }
 }
