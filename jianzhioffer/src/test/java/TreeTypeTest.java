@@ -1,6 +1,8 @@
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.Arrays;
+
 public class TreeTypeTest {
 
     @Test
@@ -79,5 +81,17 @@ public class TreeTypeTest {
             System.out.println(treeLinkNode.val);
             print(treeLinkNode.right);
         }
+    }
+
+
+    @Test
+    public void buildHeap(){
+        TreeType treeType = new TreeType();
+
+        int[] array = new int[]{7, 1, 3, 10, 5, 2, 8, 9, 6};
+        int[] expectedArray = new int[]{1, 5, 2, 6, 7, 3, 8, 9, 10};
+        treeType.buildHeap(array, array.length);
+
+        Assert.assertTrue(Arrays.equals(expectedArray, array));
     }
 }

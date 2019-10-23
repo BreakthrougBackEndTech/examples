@@ -96,6 +96,60 @@ public class TreeType {
         return null;
     }
 
+    /**
+     * 二叉堆 上浮
+     */
+    public void upAdjust(int[] arr, int upIndex, int usedLength) {
+        if (upIndex > usedLength - 1) {
+            return;
+        }
+
+        int childIndex = upIndex;
+        int parentIndex = (childIndex - 1) / 2;
+
+        int temp = arr[childIndex];
+        while (parentIndex >= 0 && arr[parentIndex] > temp) {
+
+            arr[childIndex] = arr[parentIndex];
+
+            childIndex = parentIndex;
+            parentIndex = (childIndex - 1) / 2;
+        }
+
+        arr[childIndex] = temp;
+    }
+
+    public void downAdjust(int[] arr, int downIndex, int usedLength){
+        int parentIndex = downIndex;
+        int childIndex = 2*parentIndex + 1;
+
+        int temp  = arr[parentIndex];
+        while (childIndex < usedLength){
+
+            if ((childIndex + 1) < usedLength && arr[childIndex] > arr[childIndex + 1]) {
+                childIndex++;
+            }
+
+            if(temp < arr[childIndex]){
+                break;
+            }
+
+            arr[parentIndex] = arr[childIndex];
+
+            parentIndex = childIndex;
+            childIndex = 2* parentIndex +1;
+        }
+
+        arr[parentIndex] = temp;
+    }
+
+    public void buildHeap(int[] arr, int usedLength){
+        // 从最后一个非叶子节点开始，依次做“下沉”调整
+        for(int i= usedLength/2; i>=0; i--){
+            downAdjust(arr, i, usedLength);
+        }
+    }
+
 
 
     // * Definition for a binary tree node.
