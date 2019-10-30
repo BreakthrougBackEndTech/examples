@@ -11,4 +11,15 @@ public class OtherTypeTest {
         Assert.assertEquals(0.0, otherType.Power(0.0, 3), 0.001);
         Assert.assertEquals(0.125, otherType.Power(2.0, -3), 0.001);
     }
+
+
+    @Test
+    public void isMatch(){
+        OtherType otherType = new OtherType();
+        Assert.assertFalse(otherType.isMatch("aa", "a"));
+        Assert.assertTrue(otherType.isMatch("aa", "a*"));
+        Assert.assertTrue(otherType.isMatch("ab", ".*"));
+        Assert.assertTrue(otherType.isMatch("aab", "c*a*b"));
+        Assert.assertFalse(otherType.isMatch("mississippi",  "mis*is*p*."));
+    }
 }
