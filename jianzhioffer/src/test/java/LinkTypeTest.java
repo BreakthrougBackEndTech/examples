@@ -26,9 +26,9 @@ public class LinkTypeTest {
 
         LinkType.ListNode result = linkType.deleteDuplicates(list1);
 
-        Assert.assertEquals(result.val, 1);
-        Assert.assertEquals(result.next.val, 2);
-        Assert.assertEquals(result.next.next.val, 5);
-        Assert.assertEquals(result.next.next.next, null);
+        Assert.assertEquals(1, result.val);
+        Assert.assertEquals(2, result.next.val);
+        Assert.assertEquals(5, result.next.next.val);
+        Assert.assertEquals(null, result.next.next.next);
     }
 }

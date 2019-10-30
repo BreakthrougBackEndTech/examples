@@ -20,53 +20,38 @@ public class LinkType {
      著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
      */
     public ListNode deleteDuplicates(ListNode head) {
+        ListNode ret = new ListNode(-1);
 
-        ListNode firstNode = findFirstNonDuplicateNode(head);
+        ListNode retCurrent = ret;
+        ListNode currentNode = head;
 
-        if (firstNode == null){
-            return null;
-        }
+        while (currentNode != null) {
+            int nowValue = currentNode.val;
 
-        ListNode ret = new ListNode(firstNode.val);
+            if (currentNode.next != null) {
+                if (currentNode.next.val == nowValue) {
+                    while (currentNode.next.next != null && currentNode.next.next.val == nowValue) {
+                        currentNode = currentNode.next;
+                    }
+                    currentNode = currentNode.next.next;
+                } else {
+                    ListNode addNode = new ListNode(currentNode.val);
+                    retCurrent.next = addNode;
+                    retCurrent = addNode;
 
-        ListNode currentNode = ret;
+                    currentNode = currentNode.next;
+                }
+            } else {
+                ListNode addNode = new ListNode(currentNode.val);
+                retCurrent.next = addNode;
 
-        while (firstNode != null ){
-
-
-            firstNode = findFirstNonDuplicateNode(firstNode.next);
-
-            if(firstNode == null){
-                break;
-            }else{
-                ListNode node = new ListNode(firstNode.val);
-
-                currentNode.next = node;
-                currentNode = node;
-                firstNode = firstNode.next;
+                currentNode = currentNode.next;
             }
         }
-
-        return ret;
+        return ret.next;
     }
 
-    private ListNode findFirstNonDuplicateNode(ListNode currentNode) {
-        if(currentNode == null){
-            return  null;
-        }
 
-        int nowValue = currentNode.val;
-
-        while (currentNode != null && currentNode.next != null && currentNode.next.val == nowValue ){
-
-            currentNode = currentNode.next;
-            if(currentNode != null){
-                nowValue = currentNode.val;
-            }
-        }
-
-        return currentNode;
-    }
 
 
     public class ListNode {
