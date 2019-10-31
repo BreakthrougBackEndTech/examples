@@ -19,7 +19,10 @@ public class OtherTypeTest {
         Assert.assertFalse(otherType.isMatch("aa", "a"));
         Assert.assertTrue(otherType.isMatch("aa", "a*"));
         Assert.assertTrue(otherType.isMatch("ab", ".*"));
+        Assert.assertTrue(otherType.isMatch("a", "ab*"));
         Assert.assertTrue(otherType.isMatch("aab", "c*a*b"));
         Assert.assertFalse(otherType.isMatch("mississippi",  "mis*is*p*."));
+        Assert.assertFalse(otherType.isMatch("ab",  ".*c"));
+        Assert.assertTrue(otherType.isMatch("aasdfasdfasdfasdfas",  "aasdf.*asdf.*asdf.*asdf.*s"));
     }
 }

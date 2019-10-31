@@ -95,11 +95,8 @@ public class OtherType {
      著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
      */
     public boolean isMatch(String s, String p) {
-        char[] str = s.toCharArray();
-        char[] pattern = p.toCharArray();
+        return match(s.toCharArray(), p.toCharArray());
 //        return s.matches(p);
-        return match(str, pattern);
-
     }
 
     private boolean match(char[] str, char[] pattern) {
@@ -110,38 +107,25 @@ public class OtherType {
         if (strIndex == str.length && patternIndex == pattern.length) {
             return true;
         }
-        if (strIndex < str.length-1 && patternIndex == pattern.length) {
+        if ((strIndex < str.length && patternIndex == pattern.length)) {
             return false;
         }
 
 
-        if (patternIndex < pattern.length - 1) {
-            if (pattern[patternIndex + 1] == '*') {
-                if ((pattern[patternIndex] == '.' && strIndex < str.length-1) || pattern[patternIndex] == str[strIndex]) {
-                    return matchCore(str, pattern, strIndex + 1, patternIndex)
-                            || matchCore(str, pattern, strIndex + 1, patternIndex + 2)
-                            || matchCore(str, pattern, strIndex, patternIndex + 2);
-                }else {
-                    return matchCore(str, pattern, strIndex, patternIndex+2);
-                }
+        if (patternIndex < pattern.length - 1 && pattern[patternIndex + 1] == '*') {
+            if (strIndex < str.length && (pattern[patternIndex] == '.' || pattern[patternIndex] == str[strIndex])) {
+                return matchCore(str, pattern, strIndex + 1, patternIndex)
+                        || matchCore(str, pattern, strIndex + 1, patternIndex + 2)
+                        || matchCore(str, pattern, strIndex, patternIndex + 2);
             } else {
-                if (pattern[patternIndex] == '.' || pattern[patternIndex] == str[strIndex]) {
-                    return matchCore(str, pattern, strIndex+1, patternIndex+1);
-                }else {
-                    return false;
-                }
+                return matchCore(str, pattern, strIndex, patternIndex + 2);
             }
 
-        } else {
-            if (pattern[patternIndex] == '*') {
-                return false;
-            } else if ((pattern[patternIndex] == '.' && strIndex < str.length-1) || pattern[patternIndex] == str[strIndex]) {
-                return matchCore(str, pattern, strIndex + 1, patternIndex+1);
-            } else {
-                return false;
-            }
+        } else if (strIndex < str.length && (pattern[patternIndex] == '.' || pattern[patternIndex] == str[strIndex])) {
+            return matchCore(str, pattern, strIndex + 1, patternIndex + 1);
         }
 
+        return false;
     }
 }
 
