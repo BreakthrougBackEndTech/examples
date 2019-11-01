@@ -128,4 +128,17 @@ public class ArrayTypeTest {
         Assert.assertEquals(1, arrayType.findMin(nums));
     }
 
+
+    @Test
+    public void reOrderArray(){
+        int[] nums = new int[]{4, 5, 6, 7, 1, 2};
+        int[] expectedNums = new int[]{5, 7, 1, 4, 6, 2};
+
+        ArrayType arrayType = new ArrayType();
+        arrayType.reOrderArray(nums);
+
+
+        Assert.assertTrue(Arrays.equals(expectedNums, nums));
+    }
+
 }
