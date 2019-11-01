@@ -114,7 +114,7 @@ public class LinkType {
         do{
             aheadOneStep = aheadOneStep.next;
             loopSize++;
-        }while (aheadOneStep == aheadTwoStep);
+        }while (aheadOneStep != aheadTwoStep);
 
         //找入口
         aheadOneStep = pHead;
