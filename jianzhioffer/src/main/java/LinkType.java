@@ -51,6 +51,87 @@ public class LinkType {
         return ret.next;
     }
 
+    /**
+     题目描述
+     输入一个链表，输出该链表中倒数第k个结点。
+     */
+    public ListNode FindKthToTail(ListNode head, int k) {
+        if (head == null || k <= 0) {
+            return null;
+        }
+
+        ListNode ahead = head, behind = head;
+
+        //先将一个节点往后移动k-1个距离
+        while (k > 1) {
+            if (ahead.next == null) {
+                return null;
+            }
+            ahead = ahead.next;
+            k--;
+        }
+
+        while (ahead.next != null) {
+            ahead = ahead.next;
+            behind = behind.next;
+        }
+
+        return behind;
+    }
+
+
+    /**
+     给一个链表，若其中包含环，请找出该链表的环的入口结点，否则，输出null。
+     */
+    public ListNode EntryNodeOfLoop(ListNode pHead) {
+        ListNode aheadOneStep = pHead, aheadTwoStep = pHead;
+
+        boolean existLoop = false;
+//        int steps = 0;
+        //找环
+        while (aheadTwoStep != null && aheadOneStep != null) {
+            aheadOneStep = aheadOneStep.next;
+            if (aheadTwoStep.next != null) {
+                aheadTwoStep = aheadTwoStep.next.next;
+            } else {
+                aheadTwoStep = null;
+            }
+
+//            steps++;
+
+            if (aheadOneStep!= null && aheadOneStep == aheadTwoStep) {
+                existLoop = true;
+                break;
+            }
+        }
+
+        if (!existLoop) {
+            return null;
+        }
+
+        //计算环的长度
+        int loopSize = 0;
+        do{
+            aheadOneStep = aheadOneStep.next;
+            loopSize++;
+        }while (aheadOneStep == aheadTwoStep);
+
+        //找入口
+        aheadOneStep = pHead;
+        aheadTwoStep = pHead;
+
+        for(int i=0; i< loopSize; i++){
+            aheadOneStep = aheadOneStep.next;
+        }
+
+        while (aheadOneStep != aheadTwoStep){
+            aheadOneStep = aheadOneStep.next;
+            aheadTwoStep = aheadTwoStep.next;
+        }
+
+        return aheadOneStep;
+    }
+
 
 
 
