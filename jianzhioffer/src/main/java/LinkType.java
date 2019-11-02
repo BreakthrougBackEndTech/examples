@@ -1,3 +1,5 @@
+//import java.util.Stack;
+
 /**
  * @author: zhegong
  **/
@@ -130,6 +132,31 @@ public class LinkType {
         }
 
         return aheadOneStep;
+    }
+
+
+    /**
+     * 输入一个链表，反转链表后，输出新链表的表头
+     */
+    public ListNode ReverseList(ListNode head) {
+
+        if(head == null){
+            return null;
+        }
+
+        ListNode preNode, currentNode, nextNode;
+
+        preNode = null;
+        currentNode = head;
+
+        while (currentNode != null) {
+            nextNode = currentNode.next;
+            currentNode.next = preNode;
+            preNode = currentNode;
+            currentNode = nextNode;
+        }
+
+        return preNode;
     }
 
 

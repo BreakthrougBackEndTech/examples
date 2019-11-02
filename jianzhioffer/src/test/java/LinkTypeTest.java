@@ -76,4 +76,33 @@ public class LinkTypeTest {
 
         Assert.assertEquals(list3, linkType.EntryNodeOfLoop(list1));
     }
+
+
+    @Test
+    public void ReverseList(){
+        LinkType linkType = new LinkType();
+
+        LinkType.ListNode list1 = linkType.new ListNode(1);
+        LinkType.ListNode list2 = linkType.new ListNode(2);
+        LinkType.ListNode list3 = linkType.new ListNode(3);
+        LinkType.ListNode list4 = linkType.new ListNode(4);
+        LinkType.ListNode list5 = linkType.new ListNode(5);
+        LinkType.ListNode list6 = linkType.new ListNode(6);
+
+        list1.next = list2;
+        list2.next = list3;
+        list3.next = list4;
+        list4.next = list5;
+        list5.next = list6;
+
+
+        LinkType.ListNode ret = linkType.ReverseList(list1);
+
+        Assert.assertEquals(list6, ret);
+        Assert.assertEquals(list5, ret.next);
+        Assert.assertEquals(list4, ret.next.next);
+        Assert.assertEquals(list3, ret.next.next.next);
+        Assert.assertEquals(list2, ret.next.next.next.next);
+        Assert.assertEquals(list1, ret.next.next.next.next.next);
+    }
 }
