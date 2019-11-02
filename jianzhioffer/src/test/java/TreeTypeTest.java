@@ -94,4 +94,47 @@ public class TreeTypeTest {
 
         Assert.assertTrue(Arrays.equals(expectedArray, array));
     }
+
+    @Test
+    public void HasSubtree(){
+        /** 8                        8
+         /    \                     / \
+         8     7                   9   2
+       /   \
+      9     2
+          /   \
+         4     7
+         */
+        TreeType treeType = new TreeType();
+        TreeType.TreeNode rootNode = treeType.new TreeNode(8);
+
+        TreeType.TreeNode node2 = treeType.new TreeNode(8);
+        TreeType.TreeNode node3 = treeType.new TreeNode(7);
+        TreeType.TreeNode node4 = treeType.new TreeNode(9);
+        TreeType.TreeNode node5 = treeType.new TreeNode(2);
+        TreeType.TreeNode node6 = treeType.new TreeNode(4);
+        TreeType.TreeNode node7 = treeType.new TreeNode(7);
+
+        rootNode.left = node2;
+        rootNode.right = node3;
+
+        node2.left = node4;
+        node2.right = node5;
+
+        node5.left = node6;
+        node5.right = node7;
+
+
+        TreeType.TreeNode rootNode2 = treeType.new TreeNode(8);
+        TreeType.TreeNode node22 = treeType.new TreeNode(9);
+        TreeType.TreeNode node23 = treeType.new TreeNode(2);
+
+        rootNode2.left = node22;
+        rootNode2.right = node23;
+
+
+        Assert.assertTrue(treeType.HasSubtree(rootNode, rootNode2));
+
+
+    }
 }
