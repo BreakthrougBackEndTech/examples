@@ -134,7 +134,24 @@ public class TreeTypeTest {
 
 
         Assert.assertTrue(treeType.HasSubtree(rootNode, rootNode2));
-
-
     }
+
+
+    @Test
+    public void Mirror(){
+        TreeType treeType = new TreeType();
+        TreeType.TreeNode rootNode = treeType.new TreeNode(8);
+        TreeType.TreeNode node2 = treeType.new TreeNode(9);
+        TreeType.TreeNode node3 = treeType.new TreeNode(2);
+
+        rootNode.left = node2;
+        rootNode.right = node3;
+
+        treeType.Mirror(rootNode);
+
+        Assert.assertEquals(8,rootNode.val);
+        Assert.assertEquals(2,rootNode.left.val);
+        Assert.assertEquals(9,rootNode.right.val);
+    }
+
 }
