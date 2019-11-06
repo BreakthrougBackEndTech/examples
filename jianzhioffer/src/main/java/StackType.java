@@ -78,31 +78,19 @@ public class StackType {
     class MinStack {
         Stack<Integer> stack1 = new Stack<Integer>();
         Stack<Integer> stack2 = new Stack<Integer>();
-        Stack<Integer> stackTemp = new Stack<>();
 
         public void push(int node) {
             stack1.push(node);
-            while (!stack2.isEmpty() && stack2.peek() < node){
-                stackTemp.push(stack2.pop());
-            }
-            stack2.push(node);
-
-            while (!stackTemp.isEmpty()){
-                stack2.push(stackTemp.pop());
+            if (stack2.isEmpty() || stack2.peek() > node) {
+                stack2.push(node);
             }
         }
 
         public void pop() {
             int node = stack1.pop();
 
-            while (stack2.peek() != node){
-                stackTemp.push(stack2.pop());
-            }
-
-            stack2.pop();
-
-            while (!stackTemp.isEmpty()){
-                stack2.push(stackTemp.pop());
+            if (stack2.peek() == node) {
+                stack2.pop();
             }
         }
 
