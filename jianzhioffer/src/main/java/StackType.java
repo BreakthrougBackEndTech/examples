@@ -71,4 +71,48 @@ public class StackType {
         return stack2.pop();
     }
 
+
+    /**
+     * 定义栈的数据结构，请在该类型中实现一个能够得到栈中所含最小元素的min函数（时间复杂度应为O（1））。
+     */
+    class MinStack {
+        Stack<Integer> stack1 = new Stack<Integer>();
+        Stack<Integer> stack2 = new Stack<Integer>();
+        Stack<Integer> stackTemp = new Stack<>();
+
+        public void push(int node) {
+            stack1.push(node);
+            while (!stack2.isEmpty() && stack2.peek() < node){
+                stackTemp.push(stack2.pop());
+            }
+            stack2.push(node);
+
+            while (!stackTemp.isEmpty()){
+                stack2.push(stackTemp.pop());
+            }
+        }
+
+        public void pop() {
+            int node = stack1.pop();
+
+            while (stack2.peek() != node){
+                stackTemp.push(stack2.pop());
+            }
+
+            stack2.pop();
+
+            while (!stackTemp.isEmpty()){
+                stack2.push(stackTemp.pop());
+            }
+        }
+
+        public int top() {
+            return stack1.peek();
+        }
+
+        public int min() {
+            return stack2.peek();
+        }
+    }
+
 }

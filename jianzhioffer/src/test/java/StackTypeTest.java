@@ -13,4 +13,19 @@ public class StackTypeTest {
         Assert.assertTrue(stackType.validateStackSequences(pushed, popped));
     }
 
+
+    @Test
+    public void minStack(){
+        StackType stackType = new StackType();
+        StackType.MinStack minStack = stackType.new MinStack();
+
+        minStack.push(2);
+        minStack.push(1);
+        minStack.push(3);
+
+        Assert.assertEquals(1, minStack.min());
+
+
+    }
+
 }
