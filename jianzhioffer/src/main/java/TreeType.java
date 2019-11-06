@@ -1,5 +1,4 @@
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @description:
@@ -241,6 +240,33 @@ public class TreeType {
         }
 
         return left.val == right.val && isSymmetrical(left.left, right.right) && isSymmetrical(left.right, right.left);
+    }
+
+    /**
+     * 从上往下打印出二叉树的每个节点，同层节点从左至右打印。
+     */
+    public ArrayList<Integer> PrintFromTopToBottom(TreeNode root) {
+        ArrayList<Integer> list = new ArrayList<>();
+        if(root == null){
+            return list;
+        }
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+
+        while (!queue.isEmpty()){
+            TreeNode treeNode = queue.poll();
+            list.add(treeNode.val);
+
+            if(treeNode.left != null){
+                queue.add(treeNode.left);
+            }
+
+            if(treeNode.right != null){
+                queue.add(treeNode.right);
+            }
+        }
+
+        return list;
     }
 
 
