@@ -141,4 +141,74 @@ public class ArrayTypeTest {
         Assert.assertTrue(Arrays.equals(expectedNums, nums));
     }
 
+    @Test
+    public void printMatrix(){
+        int[][] matrix = new int[][]{
+                {1, 2, 3, 4},
+                {5, 6, 7, 8},
+                {9, 10, 11, 12},
+                {13, 14, 15, 16}};
+
+        ArrayType arrayType = new ArrayType();
+        ArrayList<Integer> list;
+      list = arrayType.printMatrix(matrix);
+
+        Assert.assertEquals(16, list.size());
+
+        Assert.assertEquals(1, list.get(0).intValue());
+        Assert.assertEquals(2, list.get(1).intValue());
+        Assert.assertEquals(3, list.get(2).intValue());
+        Assert.assertEquals(4, list.get(3).intValue());
+        Assert.assertEquals(8, list.get(4).intValue());
+        Assert.assertEquals(12, list.get(5).intValue());
+        Assert.assertEquals(16, list.get(6).intValue());
+        Assert.assertEquals(15, list.get(7).intValue());
+        Assert.assertEquals(14, list.get(8).intValue());
+        Assert.assertEquals(13, list.get(9).intValue());
+        Assert.assertEquals(9, list.get(10).intValue());
+        Assert.assertEquals(5, list.get(11).intValue());
+        Assert.assertEquals(6, list.get(12).intValue());
+        Assert.assertEquals(7, list.get(13).intValue());
+        Assert.assertEquals(11, list.get(14).intValue());
+        Assert.assertEquals(10, list.get(15).intValue());
+        //1,2,3,4,8,12,16,15,14,13,9,5,6,7,11,10.
+
+        matrix = new int[][]{
+                {1},
+                {2},
+                {3},
+                {4},
+                {5}};
+
+        list = arrayType.printMatrix(matrix);
+        Assert.assertEquals(5, list.size());
+
+        Assert.assertEquals(1, list.get(0).intValue());
+        Assert.assertEquals(2, list.get(1).intValue());
+        Assert.assertEquals(3, list.get(2).intValue());
+        Assert.assertEquals(4, list.get(3).intValue());
+        Assert.assertEquals(5, list.get(4).intValue());
+
+        matrix = new int[][]{
+                {1,2},
+                {3, 4},
+                {5, 6},
+                {7, 8},
+                {9, 10}};
+
+        list = arrayType.printMatrix(matrix);
+        Assert.assertEquals(10, list.size());
+
+        Assert.assertEquals(1, list.get(0).intValue());
+        Assert.assertEquals(2, list.get(1).intValue());
+        Assert.assertEquals(4, list.get(2).intValue());
+        Assert.assertEquals(6, list.get(3).intValue());
+        Assert.assertEquals(8, list.get(4).intValue());
+        Assert.assertEquals(10, list.get(5).intValue());
+        Assert.assertEquals(9, list.get(6).intValue());
+        Assert.assertEquals(7, list.get(7).intValue());
+        Assert.assertEquals(5, list.get(8).intValue());
+        Assert.assertEquals(3, list.get(9).intValue());
+    }
+
 }

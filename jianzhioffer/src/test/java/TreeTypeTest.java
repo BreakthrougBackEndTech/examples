@@ -154,4 +154,27 @@ public class TreeTypeTest {
         Assert.assertEquals(9,rootNode.right.val);
     }
 
+    @Test
+    public void isSymmetrical()
+    {
+        TreeType treeType = new TreeType();
+
+        TreeType.TreeNode node1 = treeType.new TreeNode(8);
+        TreeType.TreeNode node2 = treeType.new TreeNode(7);
+        TreeType.TreeNode node3 = treeType.new TreeNode(7);
+        TreeType.TreeNode node4 = treeType.new TreeNode(6);
+        TreeType.TreeNode node5 = treeType.new TreeNode(5);
+        TreeType.TreeNode node6 = treeType.new TreeNode(5);
+        TreeType.TreeNode node7 = treeType.new TreeNode(6);
+
+        node1.left = node2;
+        node1.right = node3;
+        node2.left = node4;
+        node2.right = node5;
+        node3.left = node6;
+        node3.right = node7;
+
+        Assert.assertTrue(treeType.isSymmetrical(node1));
+    }
+
 }
