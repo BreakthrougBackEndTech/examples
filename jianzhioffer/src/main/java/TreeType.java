@@ -270,6 +270,47 @@ public class TreeType {
     }
 
 
+    /**
+     *
+     输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历的结果。
+     如果是则输出Yes,否则输出No。假设输入的数组的任意两个数字都互不相同
+     */
+    public boolean VerifySquenceOfBST(int[] sequence) {
+        if (sequence.length == 0) {
+            return false;
+        }
+
+        return isSquenceOfBST(sequence, 0, sequence.length - 1);
+    }
+
+    //4 6 7 5
+    private boolean isSquenceOfBST(int[] sequence, int start, int end) {
+        int firstBig = -1;
+        if (start >= end) {
+            return true;
+        }
+
+        for (int i = start; i < end; i++) {
+            if (sequence[i] >= sequence[end]) {
+                firstBig = i;
+                break;
+            }
+        }
+
+        if (firstBig == -1) {
+            return isSquenceOfBST(sequence, start, end - 1);
+        } else {
+            for (int i = firstBig + 1; i < end; i++) {
+                if (sequence[i] < sequence[end]) {
+                    return false;
+                }
+            }
+
+            return isSquenceOfBST(sequence, start, firstBig - 1) && isSquenceOfBST(sequence, firstBig, end - 1);
+        }
+    }
+
+
     // * Definition for a binary tree node.
     class TreeNode {
         int val;

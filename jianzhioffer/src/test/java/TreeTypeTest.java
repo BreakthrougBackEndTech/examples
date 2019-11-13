@@ -177,4 +177,12 @@ public class TreeTypeTest {
         Assert.assertTrue(treeType.isSymmetrical(node1));
     }
 
+    @Test
+    public void VerifySquenceOfBST(){
+
+        int[] array = {4, 6, 7, 5};
+
+        Assert.assertTrue(new TreeType().VerifySquenceOfBST(array));
+    }
+
 }
