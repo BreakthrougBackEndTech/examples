@@ -185,4 +185,27 @@ public class TreeTypeTest {
         Assert.assertTrue(new TreeType().VerifySquenceOfBST(array));
     }
 
+
+    @Test
+    public void Convert(){
+        TreeType treeType = new TreeType();
+
+        TreeType.TreeNode node1 = treeType.new TreeNode(10);
+        TreeType.TreeNode node2 = treeType.new TreeNode(6);
+        TreeType.TreeNode node3 = treeType.new TreeNode(14);
+        TreeType.TreeNode node4 = treeType.new TreeNode(4);
+        TreeType.TreeNode node5 = treeType.new TreeNode(8);
+        TreeType.TreeNode node6 = treeType.new TreeNode(12);
+        TreeType.TreeNode node7 = treeType.new TreeNode(16);
+
+        node1.left = node2;
+        node1.right = node3;
+        node2.left = node4;
+        node2.right = node5;
+        node3.left = node6;
+        node3.right = node7;
+
+        treeType.Convert(node1);
+
+    }
 }

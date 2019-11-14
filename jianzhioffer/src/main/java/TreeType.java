@@ -380,6 +380,37 @@ public class TreeType {
         stack.pop();
     }
 
+    /**
+     * 题目描述
+     * 输入一棵二叉搜索树，将该二叉搜索树转换成一个排序的双向链表。要求不能创建任何新的结点，只能调整树中结点指针的指向。
+     */
+    public TreeNode Convert(TreeNode pRootOfTree) {
+
+        if(pRootOfTree == null){
+            return null;
+        }
+        List<TreeNode> nodeList = new ArrayList<>();
+        preIteratorTree(pRootOfTree, nodeList);
+
+        for(int i=0; i< nodeList.size()-1; i++){
+            TreeNode leftNode = nodeList.get(i);
+            TreeNode rightNode = nodeList.get(i+1);
+
+            leftNode.right = rightNode;
+            rightNode.left = leftNode;
+        }
+
+        return nodeList.get(0);
+    }
+
+    private void preIteratorTree(TreeNode node, List<TreeNode> nodeList){
+        if(node != null){
+            preIteratorTree(node.left, nodeList);
+            nodeList.add(node);
+            preIteratorTree(node.right, nodeList);
+        }
+    }
+
 
     // * Definition for a binary tree node.
     class TreeNode {
