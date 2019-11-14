@@ -318,9 +318,13 @@ public class TreeType {
 
     public ArrayList<ArrayList<Integer>> FindPath(TreeNode root,int target) {
         ArrayList<ArrayList<Integer>> lists = new ArrayList<>();
+        if(root == null){
+            return lists;
+        }
         ArrayList<Integer> path = new ArrayList<>();
-        addPath(root, target, lists, path);
+//        Stack<Integer> stackPath = new Stack<>();
 
+        addPath(root, target, lists, path);
 
         lists.sort((a, b) -> b.size() - a.size());
 
@@ -351,6 +355,29 @@ public class TreeType {
                 addPath(root.right, target- root.val, lists, newPaths);
             }
         }
+    }
+
+    private void addPath(TreeNode root, int target, ArrayList<ArrayList<Integer>> lists, Stack<Integer> stack){
+        stack.push(root.val);
+
+        if(root.val == target){
+            if( root.left == null && root.right == null) {
+                ArrayList<Integer> newPaths = new ArrayList<>();
+                newPaths.addAll(stack);
+
+                lists.add(newPaths);
+            }
+        }else if(root.val < target) {
+            if (root.left != null) {
+                addPath(root.left, target - root.val, lists, stack);
+            }
+
+            if (root.right != null) {
+                addPath(root.right, target - root.val, lists, stack);
+            }
+        }
+
+        stack.pop();
     }
 
 
