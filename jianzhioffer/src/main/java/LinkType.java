@@ -1,5 +1,7 @@
 //import java.util.Stack;
 
+import java.util.HashMap;
+
 /**
  * @author: zhegong
  **/
@@ -182,6 +184,45 @@ public class LinkType {
         return mergeList;
     }
 
+    public RandomListNode Clone(RandomListNode pHead)
+    {
+        if(pHead == null){
+            return null;
+        }
+        HashMap<RandomListNode, RandomListNode> nodeToNewNodeMap = new HashMap<>();
+
+        RandomListNode rNode =new RandomListNode(pHead.label);
+        nodeToNewNodeMap.put(pHead, rNode);
+
+        RandomListNode cNode = pHead.next,  crNode= rNode;
+
+        while (cNode != null){
+            RandomListNode node =new RandomListNode(cNode.label);
+            nodeToNewNodeMap.put(cNode, node);
+
+            crNode.next = node;
+            crNode = node;
+
+            cNode = cNode.next;
+        }
+
+        cNode = pHead;
+        crNode = rNode;
+
+        while (cNode != null){
+            crNode.random = nodeToNewNodeMap.get(cNode.random);
+
+            cNode = cNode.next;
+            crNode = crNode.next;
+        }
+
+        return rNode;
+
+        //clone nodes
+        //connect sib node
+        //split 1 3 5...   2 4 6 ....
+    }
+
 
 
 
@@ -191,6 +232,16 @@ public class LinkType {
 
         ListNode(int val) {
             this.val = val;
+        }
+    }
+
+    public class RandomListNode {
+        int label;
+        RandomListNode next = null;
+        RandomListNode random = null;
+
+        RandomListNode(int label) {
+            this.label = label;
         }
     }
 }
