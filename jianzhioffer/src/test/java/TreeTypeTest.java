@@ -205,7 +205,16 @@ public class TreeTypeTest {
         node3.left = node6;
         node3.right = node7;
 
-        treeType.Convert(node1);
+//        treeType.Convert(node1);
+
+        System.out.println(treeType.Serialize(node1));
+
+
+        TreeType.TreeNode retNode = treeType.Deserialize(treeType.Serialize(node1));
+
+
+        System.out.println(treeType.Serialize(retNode));
+
 
     }
 }

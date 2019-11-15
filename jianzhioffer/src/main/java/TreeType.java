@@ -436,9 +436,29 @@ public class TreeType {
             preInter(node.right, sb);
         }
     }
-    TreeNode Deserialize(String str) {
 
+    int index =0;
+
+    TreeNode Deserialize(String str) {
+        //10!6!4!##8!##14!12!##16!##
+        TreeNode node = null;
+
+        if (index < str.length()) {
+
+            if (str.charAt(index) == '#') {
+                index++;
+            } else {
+                int endIndex = str.indexOf("!", index);
+                node = new TreeNode(Integer.valueOf(str.substring(index, endIndex)));
+                index = endIndex + 1;
+                node.left = Deserialize(str);
+                node.right = Deserialize(str);
+            }
+        }
+
+        return node;
     }
+
 
 
     // * Definition for a binary tree node.
