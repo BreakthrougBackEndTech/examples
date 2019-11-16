@@ -1,3 +1,5 @@
+import java.util.*;
+
 /**
  * @description:
  * @author: zhegong
@@ -127,5 +129,83 @@ public class OtherType {
 
         return false;
     }
+
+    /**
+     * 输入一个字符串,按字典序打印出该字符串中字符的所有排列。例如输入字符串abc,
+     * 则打印出由字符a,b,c所能排列出来的所有字符串abc,acb,bac,bca,cab和cba。
+     输入描述:
+     输入一个字符串,长度不超过9(可能有字符重复),字符只包括大小写字母。
+     */
+    public ArrayList<String> Permutation(String str) {
+        ArrayList<String> strList = new ArrayList<>();
+
+        HashSet<String> set = new HashSet();
+
+        if(str == null || str.length() == 0 ){
+            return strList;
+        }
+
+        Pernutation(str.toCharArray(), set, 0);
+
+        strList.addAll(set);
+
+        Collections.sort(strList);
+
+        return strList;
+    }
+
+    private void Pernutation(char[] chars, HashSet set, int index){
+        if(index == chars.length -1){
+            set.add(new String(chars));
+        }else{
+            for(int i = index; i< chars.length;i++){
+                swap(chars, index, i);
+                Pernutation(chars, set, index+1);
+                swap(chars, index, i);
+            }
+        }
+    }
+
+
+    private void swap(char[] chars, int i, int j){
+        if(i != j) {
+            char temp = chars[i];
+            chars[i] = chars[j];
+            chars[j] = temp;
+        }
+    }
+
+
+    /**
+     * 字符串的所有组合
+     *  给一个字符串，比如ABC， 把所有的组合，即：A, B, C, AB, AC, BC, ABC, 都找出来
+     * @param str
+     */
+    public void combine(String str){
+
+        if(str == null || str.length() == 0) return ;
+
+        char[] chs = str.toCharArray();
+
+        Stack<Character> stack = new Stack<Character>();
+        for(int number = 1; number <= chs.length; number++){
+            combine(chs, 0, number, stack);
+        }
+    }
+    //从字符数组中第begin个字符开始挑选number个字符加入stack中
+    private void combine(char []chs, int begin, int number, Stack<Character> stack){
+        if(number == 0){
+            System.out.println(stack.toString());
+            return ;
+        }
+        if(begin == chs.length){
+            return;
+        }
+        stack.push(chs[begin]);
+        combine(chs, begin + 1, number - 1, stack);
+        stack.pop();
+        combine(chs, begin + 1, number, stack);
+    }
+
 }
 
