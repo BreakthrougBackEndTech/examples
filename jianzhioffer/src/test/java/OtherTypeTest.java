@@ -1,6 +1,8 @@
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 public class OtherTypeTest {
 
     @Test
@@ -24,5 +26,27 @@ public class OtherTypeTest {
         Assert.assertFalse(otherType.isMatch("mississippi",  "mis*is*p*."));
         Assert.assertFalse(otherType.isMatch("ab",  ".*c"));
         Assert.assertTrue(otherType.isMatch("aasdfasdfasdfasdfas",  "aasdf.*asdf.*asdf.*asdf.*s"));
+    }
+
+
+    @Test
+    public void Permutation() {
+        OtherType otherType = new OtherType();
+        ArrayList list = otherType.Permutation("abc");
+
+        Assert.assertEquals(6, list.size());
+
+        Assert.assertTrue(list.contains("abc"));
+        Assert.assertTrue(list.contains("acb"));
+        Assert.assertTrue(list.contains("bac"));
+        Assert.assertTrue(list.contains("bca"));
+        Assert.assertTrue(list.contains("cab"));
+        Assert.assertTrue(list.contains("cba"));
+    }
+
+    @Test
+    public void combine(){
+        OtherType otherType = new OtherType();
+        otherType.combine("abc");
     }
 }

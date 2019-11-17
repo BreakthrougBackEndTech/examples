@@ -211,4 +211,34 @@ public class ArrayTypeTest {
         Assert.assertEquals(3, list.get(9).intValue());
     }
 
+    @Test
+    public void MoreThanHalfNum_Solution() {
+        ArrayType arrayType = new ArrayType();
+        int[] array = {1, 2, 3, 2, 2, 2, 5, 4, 2};
+        Assert.assertEquals(2, arrayType.MoreThanHalfNum_Solution(array));
+
+        array = new int[]{1,2,3,2,4,2,5,2,3};
+        Assert.assertEquals(0, arrayType.MoreThanHalfNum_Solution(array));
+    }
+
+    @Test
+    public void InsertAndGetMedian(){
+//        [5,2,3,4,1,6,7,0,8]
+
+        ArrayType arrayType = new ArrayType();
+
+        arrayType.Insert(5);
+        Assert.assertEquals(5, arrayType.GetMedian(), 0);
+
+        arrayType.Insert(2);
+        Assert.assertEquals(3.5, arrayType.GetMedian(), 0);
+
+        arrayType.Insert(3);
+        Assert.assertEquals(3, arrayType.GetMedian(), 0);
+        arrayType.Insert(4);
+        Assert.assertEquals(3.5, arrayType.GetMedian(), 0);
+
+
+    }
+
 }
