@@ -241,4 +241,17 @@ public class ArrayTypeTest {
 
     }
 
+    @Test
+    public void FindGreatestSumOfSubArray() {
+        ArrayType arrayType = new ArrayType();
+
+        int[] array = {1, -2, 3, 10, -4, 7, 2, -5};
+        Assert.assertEquals(18, arrayType.FindGreatestSumOfSubArray(array));
+
+
+        array = new int[]{-3, -2, -1, -2, -4};
+
+        Assert.assertEquals(-1, arrayType.FindGreatestSumOfSubArray(array));
+    }
+
 }
