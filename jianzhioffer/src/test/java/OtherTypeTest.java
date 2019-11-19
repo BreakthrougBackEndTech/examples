@@ -49,4 +49,13 @@ public class OtherTypeTest {
         OtherType otherType = new OtherType();
         otherType.combine("abc");
     }
+
+
+    @Test
+    public void lengthOfLongestSubstring(){
+        OtherType otherType = new OtherType();
+
+        Assert.assertEquals(3, otherType.lengthOfLongestSubstring("abcabcbb"));
+        Assert.assertEquals(3, otherType.lengthOfLongestSubstring("aabaab!bb"));
+    }
 }

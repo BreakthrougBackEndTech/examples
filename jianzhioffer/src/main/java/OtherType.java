@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.concurrent.ArrayBlockingQueue;
 
 /**
  * @description:
@@ -205,6 +206,31 @@ public class OtherType {
         combine(chs, begin + 1, number - 1, stack);
         stack.pop();
         combine(chs, begin + 1, number, stack);
+    }
+
+
+    /**
+     * 给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。
+     */
+    public int lengthOfLongestSubstring(String s) {
+
+
+        String str = "";
+        int maxSize = 0;
+
+        for(int i=0; i<s.length(); i++){
+            if ( -1 != str.indexOf(s.charAt(i))){
+                str = str.substring(str.indexOf(s.charAt(i))+1) + s.charAt(i);
+            }else{
+                str = str + s.charAt(i);
+
+            }
+
+
+            maxSize = Math.max(maxSize, str.length());
+        }
+
+        return maxSize;
     }
 
 }

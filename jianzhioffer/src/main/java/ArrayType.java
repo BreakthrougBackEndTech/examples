@@ -446,6 +446,211 @@ public class ArrayType {
         return list;
     }
 
+    /**
+     * 数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。
+     * 例如输入一个长度为9的数组{1,2,3,2,2,2,5,4,2}。由于数字2在数组中出现了5次，
+     * 超过数组长度的一半，因此输出2。如果不存在则输出0
+     */
+    public int MoreThanHalfNum_Solution(int[] array) {
+        if (array == null || array.length == 0) {
+            return 0;
+        }
+        int times = 1;
+        int number = array[0];
 
+        for (int i = 1; i < array.length; i++) {
+            if (times == 0) {
+                number = array[i];
+                times = 1;
+            } else if (number == array[i]) {
+                times++;
+            } else {
+                times--;
+            }
+        }
+
+        if (times == 0) {
+            return 0;
+        } else {
+            times = 0;
+            for (int i = 0; i < array.length; i++) {
+                if (array[i] == number) {
+                    times++;
+                }
+            }
+
+            if (2 * times > array.length) {
+                return number;
+            } else {
+                return 0;
+            }
+        }
+    }
+
+    /**
+     * 如何得到一个数据流中的中位数？如果从数据流中读出奇数个数值，
+     * 那么中位数就是所有数值排序之后位于中间的数值。如果从数据流中读出偶数个数值，
+     * 那么中位数就是所有数值排序之后中间两个数的平均值。我们使用Insert()方法读取数据流，
+     * 使用GetMedian()方法获取当前读取数据的中位数。
+     * @param num
+     */
+    ArrayList<Integer> list = new ArrayList<>();
+
+    PriorityQueue<Integer> small = new PriorityQueue(Comparator.reverseOrder());
+    PriorityQueue<Integer> big = new PriorityQueue();
+
+    public void Insert(Integer num) {
+        if (small.isEmpty()) {
+            small.add(num);
+        } else if (big.isEmpty()) {
+            insertBig(num);
+        } else if (small.size() == big.size()) {
+            insertSmall(num);
+        } else {
+            insertBig(num);
+        }
+    }
+
+    private void insertBig(Integer num) {
+        if (small.peek() <= num) {
+            big.add(num);
+        } else {
+            big.add(small.poll());
+            small.add(num);
+        }
+    }
+
+    private void insertSmall(Integer num) {
+        if (big.peek() >= num) {
+            small.add(num);
+        } else {
+            small.add(big.poll());
+            big.add(num);
+        }
+    }
+
+    public Double GetMedian() {
+
+        if(small.size() == big.size()){
+            return (small.peek() + big.peek())/2.0;
+        }else{
+            return Double.valueOf(small.peek());
+        }
+
+    /*    Collections.sort(list);
+
+        if (list.size() % 2 == 1) {
+            return Double.valueOf(list.get(list.size() / 2));
+        } else {
+
+            return (list.get(list.size() / 2 - 1) + list.get(list.size() / 2)) / 2.0;
+        }*/
+
+    }
+
+    /**
+     * HZ偶尔会拿些专业问题来忽悠那些非计算机专业的同学。今天测试组开完会后,他又发话了:
+     * 在古老的一维模式识别中,常常需要计算连续子向量的最大和,当向量全为正数的时候,问题很好解决。
+     * 但是,如果向量中包含负数,是否应该包含某个负数,并期望旁边的正数会弥补它呢？
+     * 例如:{6,-3,-2,7,-15,1,2,2},连续子向量的最大和为8(从第0个开始,到第3个为止)。
+     * 给一个数组，返回它的最大连续子序列的和，你会不会被他忽悠住？(子向量的长度至少是1)
+     */
+    public int FindGreatestSumOfSubArray(int[] array) {
+        int maxRet = array[0];
+
+        int maxTemp = array[0];
+
+        for (int i = 1; i < array.length; i++) {
+            maxTemp = Math.max(Math.min(0, maxRet), Math.max(array[i], maxTemp + array[i]));
+            maxRet = Math.max(maxRet, maxTemp);
+        }
+
+        return maxRet;
+
+    }
+
+    public String PrintMinNumber(int [] numbers) {
+        ArrayList<String> list = new ArrayList();
+        for(int i=0; i< numbers.length; i++){
+
+            list.add(String.valueOf(numbers[i]));
+        }
+
+        Collections.sort(list, (a, b) ->
+                (a + b).compareTo(b + a)
+        );
+
+        StringBuilder sb = new StringBuilder();
+        for(String str: list){
+            sb.append(str);
+        }
+
+        return sb.toString();
+
+    }
+
+    /**
+     * 在数组中的两个数字，如果前面一个数字大于后面的数字，
+     * 则这两个数字组成一个逆序对。输入一个数组,求出这个数组中的逆序对的总数P。
+     * 并将P对1000000007取模的结果输出。 即输出P%1000000007
+     * @param array
+     * @return
+     */
+    public int InversePairs(int[] array){
+        if(array == null || array.length == 0)return 0;
+
+        //用来存放复制的数组
+        int[] copy = new int[array.length];
+
+        int count = InversePairsCore(array, copy, 0, array.length-1);
+        return count;
+    }
+
+    //构造递归函数
+    private int InversePairsCore(int[] array, int[] copy, int low, int high) {
+        //递归结束条件
+        if(low == high)return 0;
+
+        int mid = (low + high) >> 1;
+
+        //分治算法，将数组分为两部分
+        int leftCount = InversePairsCore(array, copy, low, mid) % 1000000007;
+        int rightCount = InversePairsCore(array, copy, mid+1, high) % 1000000007;
+
+        int count = 0;
+        int i = mid;
+        int j = high;
+        int copyIndex = high;
+
+        //将子数组合并、排序、计算逆序数
+        while(i >= low && j > mid){
+
+            //合并时前半部分的array[i]>array[j],
+            //即array[j]前面的数字都会比array[i]小，以此来计算逆序数
+            if(array[i] > array[j]){
+                count = count + j-mid;
+                copy[copyIndex--] = array[i--];
+
+                //如果count过大，即对count进行取余处理
+                if(count >= 1000000007)
+                    count = count % 1000000007;
+            }
+            else{
+                copy[copyIndex--] = array[j--];
+            }
+        }
+        //将数组中剩余元素复制到copy数组中，排好序
+        for(; i >= low; i--){
+            copy[copyIndex--] = array[i];
+        }
+        for(; j > mid; j--){
+            copy[copyIndex--] = array[j];
+        }
+        //将排好序的数组服回给原数组，进行下一步的合并
+        for(int s=low;s <= high;s++){
+            array[s] = copy[s];
+        }
+        return (count + leftCount + rightCount) % 1000000007;
+    }
 }
 
