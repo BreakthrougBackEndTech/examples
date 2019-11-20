@@ -469,6 +469,7 @@ public class ArrayType {
             }
         }
 
+
         if (times == 0) {
             return 0;
         } else {
@@ -485,7 +486,10 @@ public class ArrayType {
                 return 0;
             }
         }
+
     }
+
+
 
     /**
      * 如何得到一个数据流中的中位数？如果从数据流中读出奇数个数值，
@@ -569,6 +573,11 @@ public class ArrayType {
 
     }
 
+    /**
+     * 输入一个正整数数组，把数组里所有数字拼接起来排成一个数，
+     * 打印能拼接出的所有数字中最小的一个。
+     * 例如输入数组{3，32，321}，则打印出这三个数字能排成的最小数字为321323。
+     */
     public String PrintMinNumber(int [] numbers) {
         ArrayList<String> list = new ArrayList();
         for(int i=0; i< numbers.length; i++){
