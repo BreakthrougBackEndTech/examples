@@ -1,0 +1,44 @@
+sentinelServersConfig:
+  #If pooled connection not used for a timeout time and current connections amount bigger than minimum idle connections pool size, then it will closed and removed from pool. Value in milliseconds
+  idleConnectionTimeout: 10000
+  #Timeout in milliseconds during connecting to any Redis server
+  connectTimeout: 10000
+  #Redis server response timeout in milliseconds. Starts to countdown when Redis command was successfully sent.
+  timeout: 5000
+  #Error will be thrown if Redis command can't be sended to Redis server after retryAttempts. But if it sent successfully then timeout will be started.
+  retryAttempts: 3
+  #Time interval in milliseconds after which another one attempt to send Redis command will be executed
+  retryInterval: 1500
+  #password can be runtime changed
+  password: "w/KWs4mO/7eY/LiK3UXWdjM/u1Wovhh/aCjPWGyqGZY="
+  #Subscriptions per Redis connection limit.
+  subscriptionsPerConnection: 5
+  clientName: "ne3sws_mediation"
+  #Minimum idle subscription (pub/sub) connection amount for each slave node
+  subscriptionConnectionMinimumIdleSize: 1
+  #Maximum subscription (pub/sub) connection pool size for each slave node
+  subscriptionConnectionPoolSize: 50
+  #Redis 'slave' node minimum idle connection amount for each slave node
+  slaveConnectionMinimumIdleSize: 1
+  #Redis 'slave' node maximum connection pool size for each slave node
+  slaveConnectionPoolSize: 1
+  #Redis 'master' node minimum idle connection amount for each master node
+  masterConnectionMinimumIdleSize: 32
+  #Redis 'master' node maximum connection pool size
+  masterConnectionPoolSize: 256
+  #NetAct redis server default masterName
+  masterName: "netactMaster"
+  #All read/write go to master only to keep data consistency
+  readMode: "MASTER"
+  subscriptionMode: "MASTER"
+  #sentinel address could be replaced at installation/upgrade/scaling time
+  sentinelAddresses:
+  - "redis://vsp0049vm12:26379"
+  - "redis://vsp0049vm16:26379"
+  - "redis://vsp0049vm17:26379"
+threads: 0
+nettyThreads: 0
+#default
+codec: !<org.redisson.codec.JsonJacksonCodec> {}
+#default java NIO implementation
+transportMode: "NIO"

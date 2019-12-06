@@ -17,6 +17,12 @@
     
 ### Java18study
     Java 1.8 新特性整理
+
+### Redis
+    Redis 使用场景
+
+### IO
+    BIO NIO AIO Netty
     
 微信公众号
 ![image](/minikube/img/weixin.jpg)
