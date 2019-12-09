@@ -11,6 +11,8 @@ import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.util.Iterator;
 import java.util.Set;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * NIO服务端
@@ -22,6 +24,9 @@ public class ServerHandle implements Runnable {
     private Selector selector;
     private ServerSocketChannel serverChannel;
     private volatile boolean started;
+
+    //线程池 懒汉式的单例
+    private static ExecutorService executorService = Executors.newFixedThreadPool(10);
 
     /**
      * 构造方法
@@ -68,16 +73,7 @@ public class ServerHandle implements Runnable {
                 while (it.hasNext()) {
                     key = it.next();
                     it.remove();
-                    try {
-                        handleInput(key);
-                    } catch (Exception e) {
-                        if (key != null) {
-                            key.cancel();
-                            if (key.channel() != null) {
-                                key.channel().close();
-                            }
-                        }
-                    }
+                    executorService.execute(new ProcessOneSocket(key, selector));
                 }
             } catch (Throwable t) {
                 t.printStackTrace();
@@ -91,6 +87,35 @@ public class ServerHandle implements Runnable {
                 e.printStackTrace();
             }
     }
+}
+
+class ProcessOneSocket implements Runnable{
+
+    private SelectionKey key;
+    private Selector selector;
+    public ProcessOneSocket(SelectionKey key, Selector selector){
+        this.key = key;
+        this.selector = selector;
+    }
+
+    @Override
+    public void run() {
+        try {
+            handleInput(key);
+        } catch (Exception e) {
+                if (key != null) {
+                    key.cancel();
+                    if (key.channel() != null) {
+                        try {
+                            key.channel().close();
+                        } catch (IOException e1) {
+                            e1.printStackTrace();
+                        }
+                    }
+                }
+            }
+    }
+
 
     private void handleInput(SelectionKey key) throws IOException {
         if (key.isValid()) {
