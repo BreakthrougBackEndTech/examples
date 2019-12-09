@@ -19,7 +19,7 @@
     Java 1.8 新特性整理
 
 ### Redis
-    Redis 使用场景
+    Redis 深度历险
 
 ### IO
     BIO NIO AIO Netty
