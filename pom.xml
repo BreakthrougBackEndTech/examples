@@ -16,6 +16,7 @@
         <module>design-mode</module>
         <module>redis</module>
         <module>io</module>
+        <module>spring</module>
     </modules>
 
     <build>
