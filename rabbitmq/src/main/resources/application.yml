@@ -1,0 +1,47 @@
+
+
+#spring:
+#  # rabbitmq
+#  rabbitmq:
+#    host: localhost
+#    port: 5670
+#    username: guest
+#    password: guest
+#
+#
+#  # spring cloud stream rabbit
+#  cloud:
+#    stream:
+#      binders:
+#        rabbit:
+#          type: rabbit
+#      rabbit:
+#        bindings:
+#          # 消费者
+#          inputChannel:
+#            consumer:
+#              exchangeType: fanout # 扇形广播
+#              exchangeAutoDelete: false
+#              acknowledge-mode: MANUAL
+#          outputChannel:
+#            producer:
+#              exchangeType: fanout # 扇形广播
+#              exchangeAutoDelete: false
+#      bindings:
+#        # 消费者
+#        inputChannel:
+#          binder: rabbit
+#          # 这里填 exchange的名字
+#          destination: bizExchange
+#          # queue 的名字
+#          group: bizQueue
+#        # 生产者
+#        outputChannel:
+#          binder: rabbit
+#          # 这里填 exchange的名字
+#          destination: bizExchange
+#          # queue 的名字
+#          group: bizQueue
+#          producer:
+#            # 启动时，在mq上需要创建的队列
+#            requiredGroups: bizQueue

@@ -17,6 +17,7 @@
         <module>redis</module>
         <module>io</module>
         <module>spring</module>
+        <module>rabbitmq</module>
     </modules>
 
     <build>
