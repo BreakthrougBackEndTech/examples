@@ -38,7 +38,7 @@ management:
 yaml配置文件
 turbine:
     app-config: ingredient-service,taco-service,order-service,user-service
-    cluster-name-expression: "'default'"
+    stream-name-expression: "'default'"
     
 http://localhost:8989/turbine.stream 监控
 
