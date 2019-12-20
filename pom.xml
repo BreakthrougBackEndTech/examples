@@ -18,6 +18,7 @@
         <module>io</module>
         <module>spring</module>
         <module>rabbitmq</module>
+        <module>mq-transaction</module>
     </modules>
 
     <build>

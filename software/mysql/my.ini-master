@@ -1,0 +1,13 @@
+[mysqld]
+# set basedir to your installation path
+basedir=D:\\Program Files\\mysql
+# set datadir to the location of your data directory
+datadir=D:\\Program Files\\mysql\\data
+
+port=3307
+
+server-id=1#主库和从库需要不一致
+log-bin=mysql-bin
+
+binlog-do-db=aboo#同步的数据库
+#binlog-ignore-db=mysql#不需要同步的数据库

@@ -1,0 +1,7 @@
+Redis集群的方案总结：客户端Sharding/Redis Cluster/Proxy
+    https://blog.csdn.net/KingCat666/article/details/78552511
+springBoot整合redisCluster(redis集群)模式。
+    https://blog.csdn.net/u010199866/article/details/80705797
+
+
+redis-trib.rb create --replicas 1 127.0.0.1:6379 127.0.0.1:6380 127.0.0.1:6381 127.0.0.1:6382 127.0.0.1:6383 127.0.0.1:6384

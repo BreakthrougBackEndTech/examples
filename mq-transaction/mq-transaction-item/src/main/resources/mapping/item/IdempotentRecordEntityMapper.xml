@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.item.mapper.IdempotentRecordEntityMapper">
+    <resultMap id="BaseResultMap" type="com.item.entity.IdempotentRecordEntity">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="message_data_type" jdbcType="VARCHAR" property="message_data_type"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="create_time"/>
+        <result column="status" jdbcType="VARCHAR" property="status"/>
+    </resultMap>
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.item.entity.IdempotentRecordEntity">
+        <result column="message_body" jdbcType="LONGVARCHAR" property="message_body"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, message_data_type, create_time, status
+  </sql>
+    <sql id="Blob_Column_List">
+    message_body
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from mq_idempotent_record
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from mq_idempotent_record
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+    <insert id="insert" parameterType="com.item.entity.IdempotentRecordEntity">
+        insert into mq_idempotent_record (id, message_data_type, create_time, status,message_body)
+        values (#{id,jdbcType=BIGINT}, #{message_data_type,jdbcType=VARCHAR},
+        #{create_time,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR}, #{message_body,jdbcType=LONGVARCHAR}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="com.item.entity.IdempotentRecordEntity">
+        insert into mq_idempotent_record
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="message_data_type != null">
+                message_data_type,
+            </if>
+            <if test="create_time != null">
+                create_time,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="message_body != null">
+                message_body,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="message_data_type != null">
+                #{message_data_type,jdbcType=VARCHAR},
+            </if>
+            <if test="create_time != null">
+                #{create_time,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="message_body != null">
+                #{message_body,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.item.entity.IdempotentRecordEntity">
+        update mq_idempotent_record
+        <set>
+            <if test="message_data_type != null">
+                message_data_type = #{message_data_type,jdbcType=VARCHAR},
+            </if>
+            <if test="create_time != null">
+                create_time = #{create_time,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="message_body != null">
+                message_body = #{message_body,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.item.entity.IdempotentRecordEntity">
+    update mq_idempotent_record
+    set message_data_type = #{message_data_type,jdbcType=VARCHAR},
+      create_time = #{create_time,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=VARCHAR},
+      message_body = #{message_body,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+    <update id="updateByPrimaryKey" parameterType="com.item.entity.IdempotentRecordEntity">
+    update mq_idempotent_record
+    set message_data_type = #{message_data_type,jdbcType=VARCHAR},
+      create_time = #{create_time,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

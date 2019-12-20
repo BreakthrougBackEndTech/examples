@@ -23,6 +23,12 @@
 
 ### IO
     BIO NIO AIO Netty
+    
+### RabbitMQ
+    rabbitMQ消息队列
+    
+### mq-transaction
+    消息队列最终一致性
 
 ### TODO
 Spring  zookeeper

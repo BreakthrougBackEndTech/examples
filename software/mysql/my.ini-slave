@@ -1,0 +1,24 @@
+[mysqld]
+# set basedir to your installation path
+basedir=D:\\Program Files\\mysql_slave
+# set datadir to the location of your data directory
+datadir=D:\\Program Files\\mysql_slave\\data
+
+port=3308
+
+server-id=2#主库和从库需要不一致
+
+master-host=127.0.0.1#主库IP（和从库是局域网）
+
+master-user=slave
+
+master-password=slave123
+
+master-port=3307
+
+master-connect-retry=60
+
+replicate-do-db=aboo#需要同步的表
+
+#replicate-do-db=keyboard#需要同步的表
+#replicate-ignore-db=mysql#不需要同步的表

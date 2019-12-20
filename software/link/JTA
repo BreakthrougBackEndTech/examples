@@ -1,0 +1,58 @@
+https://www.ibm.com/developerworks/cn/java/j-lo-jta/
+
+清单 2. JTA 事务处理
+public void transferAccount() {
+
+        UserTransaction userTx = null;
+        Connection connA = null;
+        Statement stmtA = null;
+
+        Connection connB = null;
+        Statement stmtB = null;
+
+        try{
+              // 获得 Transaction 管理对象
+            userTx = (UserTransaction)getContext().lookup("\
+                  java:comp/UserTransaction");
+            // 从数据库 A 中取得数据库连接
+            connA = getDataSourceA().getConnection();
+
+            // 从数据库 B 中取得数据库连接
+            connB = getDataSourceB().getConnection();
+
+                       // 启动事务
+            userTx.begin();
+
+            // 将 A 账户中的金额减少 500
+            stmtA = connA.createStatement();
+            stmtA.execute("
+           update t_account set amount = amount - 500 where account_id = 'A'");
+
+            // 将 B 账户中的金额增加 500
+            stmtB = connB.createStatement();
+            stmtB.execute("\
+            update t_account set amount = amount + 500 where account_id = 'B'");
+
+            // 提交事务
+            userTx.commit();
+            // 事务提交：转账的两步操作同时成功（数据库 A 和数据库 B 中的数据被同时更新）
+        } catch(SQLException sqle){
+
+            try{
+                  // 发生异常，回滚在本事务中的操纵
+                 userTx.rollback();
+                // 事务回滚：转账的两步操作完全撤销
+                //( 数据库 A 和数据库 B 中的数据更新被同时撤销）
+
+                stmt.close();
+                conn.close();
+                ...
+            }catch(Exception ignore){
+
+            }
+            sqle.printStackTrace();
+
+        } catch(Exception ne){
+            e.printStackTrace();
+        }
+    }
