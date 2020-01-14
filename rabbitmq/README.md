@@ -28,7 +28,7 @@ TTL 0代表不超时 设置超时时间，在队列中超时， 就丢到死信�
 #### 持久化
 交换机,队列,消息的持久化 
 交换机和队列是在重启的时候 元数据不丢
-BasicPropert i es 中的deliveryMode 属性)设置为2 即可实现消息的持久
+BasicProperties 中的deliveryMode 属性)设置为2 即可实现消息的持久
 
 #### 生产者确认
 1. 事物
