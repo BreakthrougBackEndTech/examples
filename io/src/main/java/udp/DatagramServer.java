@@ -17,6 +17,7 @@ import java.util.concurrent.TimeUnit;
 public class DatagramServer {
 
     private static  int maxInboundMessageSize = (1 << 16) - 1;
+//    private static  int maxInboundMessageSize = 100;
 
     private static ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(10, 10, 60, TimeUnit.SECONDS, new ArrayBlockingQueue<>(10000));
 
@@ -29,7 +30,7 @@ public class DatagramServer {
         int i=0;
         long start = System.currentTimeMillis();
 
-        while (i<1000000) {
+        while (i<100000) {
             s.receive(packet);
 //            System.out.println("client:" + new String(data));
             i++;
