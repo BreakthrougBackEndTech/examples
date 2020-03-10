@@ -17,7 +17,7 @@ package netty.echo;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
-import io.netty.channel.nio.NioEventLoopGroup;
+import io.netty.channel.nio.NioHandler;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.logging.LogLevel;
@@ -45,9 +45,11 @@ public final class EchoServer {
         }
 
         // Configure the server.
-        EventLoopGroup bossGroup = new NioEventLoopGroup(1);
-        EventLoopGroup workerGroup = new NioEventLoopGroup();
+        EventLoopGroup bossGroup = new MultithreadEventLoopGroup(1, NioHandler.newFactory());
+        EventLoopGroup workerGroup = new MultithreadEventLoopGroup(NioHandler.newFactory());
         final EchoServerHandler serverHandler = new EchoServerHandler();
+        final EchoServerHandler1 serverHandler1 = new EchoServerHandler1();
+        final EchoServerHandler2 serverHandler2 = new EchoServerHandler2();
         try {
             ServerBootstrap b = new ServerBootstrap();
             b.group(bossGroup, workerGroup)
@@ -61,6 +63,9 @@ public final class EchoServer {
                      if (sslCtx != null) {
                          p.addLast(sslCtx.newHandler(ch.alloc()));
                      }
+
+                     p.addLast(serverHandler1);
+                     p.addLast(serverHandler2);
                      //p.addLast(new LoggingHandler(LogLevel.INFO));
                      p.addLast(serverHandler);
                  }

@@ -15,20 +15,20 @@
  */
 package netty.echo;
 
+import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandler.Sharable;
 import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.ChannelInboundHandlerAdapter;
 
 /**
  * Handler implementation for the echo server.
  */
 @Sharable
-public class EchoServerHandler extends ChannelInboundHandlerAdapter {
+public class EchoServerHandler implements ChannelHandler {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
+        System.out.println(msg);
         ctx.write(msg);
-//        System.out.println(msg);
     }
 
     @Override

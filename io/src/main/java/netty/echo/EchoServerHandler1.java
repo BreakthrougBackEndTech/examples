@@ -18,46 +18,44 @@ package netty.echo;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandler;
+import io.netty.channel.ChannelHandler.Sharable;
 import io.netty.channel.ChannelHandlerContext;
+import io.netty.util.CharsetUtil;
 
 /**
- * Handler implementation for the echo client.  It initiates the ping-pong
- * traffic between the echo client and server by sending the first message to
- * the server.
+ * Handler implementation for the echo server.
  */
-public class EchoClientHandler implements ChannelHandler {
-
-    private final ByteBuf firstMessage;
-
-    /**
-     * Creates a client-side handler.
-     */
-    public EchoClientHandler() {
-        firstMessage = Unpooled.buffer(EchoClient.SIZE);
-        for (int i = 0; i < firstMessage.capacity(); i ++) {
-            firstMessage.writeByte((byte) i);
-        }
-    }
-
-    @Override
-    public void channelActive(ChannelHandlerContext ctx) {
-        ctx.writeAndFlush(firstMessage);
-    }
+@Sharable
+public class EchoServerHandler1 implements ChannelHandler {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
-        ctx.write(msg);
+        System.out.println(msg);
+        // 读取msg中的数据
+        ByteBuf result = (ByteBuf) msg;
+        byte[] bytes = new byte[result.readableBytes()];
+        result.readBytes(bytes);
+        String resultStr = new String(bytes);
+        System.out.println("handle read 1: " + resultStr);
+//        resultStr = "add head one " + resultStr;
+
+
+        ByteBuf newResult = Unpooled.copiedBuffer("<read 1 head>" + resultStr + "</read 1 head>", CharsetUtil.UTF_8);
+
+        ctx.fireChannelRead(newResult);
     }
 
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) {
-       ctx.flush();
+        System.out.println("handle complete 1: ");
+
+        ctx.fireChannelReadComplete();
     }
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
-        // Close the connection when an exception is raised.
+        //非最后的handler 只是打印，统一由最后的handler关闭channel
         cause.printStackTrace();
-        ctx.close();
+//        ctx.close();
     }
 }
