@@ -60,3 +60,5 @@ SPI/ServiceLoader 超级解耦; 解决同jvm内服务注册和服务发现（父
             <optional>true</optional>
         </dependency>
     </dependencies>
+    
+TODO 自定义的debug方式
