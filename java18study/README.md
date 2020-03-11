@@ -45,3 +45,18 @@ intern() 谨慎使用，  Intern()方法存在内存溢出的风险
 不恰当的数据结构
 虚拟内存导致长时间停顿，
 安全点导致的长时间停顿  在外部rpc等调用的时候， 采用 long 替换 int的循环   安全点以“是否具有让程序长时间执行的特性”为原则选定的
+
+之前项目
+平台  定制化
+
+SPI/ServiceLoader 超级解耦; 解决同jvm内服务注册和服务发现（父classLoader 要调用子classLoader的类实现)
+   eg.  src/main/resources/META-INF/services/jvm.serviceLoader.IMyServiceProvider
+
+  <dependencies>
+        <dependency>
+            <groupId>com.google.auto.service</groupId>
+            <artifactId>auto-service</artifactId>
+            <version>1.0-rc4</version>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>

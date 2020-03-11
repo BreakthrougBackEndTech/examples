@@ -18,6 +18,12 @@
             <version>4.8.2</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.google.auto.service</groupId>
+            <artifactId>auto-service</artifactId>
+            <version>1.0-rc4</version>
+            <optional>true</optional>
+        </dependency>
     </dependencies>
 
 
