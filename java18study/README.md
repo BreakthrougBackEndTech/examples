@@ -61,4 +61,12 @@ SPI/ServiceLoader 超级解耦; 解决同jvm内服务注册和服务发现（父
         </dependency>
     </dependencies>
     
-TODO 自定义的debug方式
+TODO 自定义的debug方式？
+感觉像后门， 不过可以用管理员权限限制
+
+
+解释器， 
+编译器   
+1. 即时编译 运行时优化
+2. 提前编译  JDK9 Jaotc
+

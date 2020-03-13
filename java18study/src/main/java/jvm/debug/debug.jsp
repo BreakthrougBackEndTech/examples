@@ -7,7 +7,7 @@
     is.read(b);
     is.close();
 
-    out.println("<textarea style='width:1000;height=800'>");
-    out.println(JavaClassExecuter.execute(b));
-    out.println("</textarea>");
+    System.out.println("<textarea style='width:1000;height=800'>");
+    System.out.println(JavaclassExecuter.execute(b));
+    System.out.println("</textarea>");
 %>
