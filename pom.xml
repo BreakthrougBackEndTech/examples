@@ -19,6 +19,7 @@
         <module>spring</module>
         <module>rabbitmq</module>
         <module>mq-transaction</module>
+        <module>zoomkeeper</module>
     </modules>
 
     <build>
