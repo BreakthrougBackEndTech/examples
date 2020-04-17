@@ -45,6 +45,11 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
             <artifactId>htmlunit-driver</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
