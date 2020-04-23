@@ -1,5 +1,7 @@
 init project with http://start.spring.io
+工具书 Spring in Action, 5th Edition
 #### 属性校验
+```
 @Data
 public class Order {
 
@@ -7,6 +9,13 @@ public class Order {
 private String zip;
 @CreditCardNumber(message="Not a valid credit card number")
 private String ccNumber;
+
+private Date createdAt;
+
+@PrePersist  //JPA的注解
+void createdAt() {
+    this.createdAt = new Date();
+}
 }
 
 public String processDesign(@Valid Order order, Errors errors) {
@@ -16,14 +25,49 @@ public String processDesign(@Valid Order order, Errors errors) {
 th:if="${#fields.hasErrors('ccNumber')}"
 th:errors="*{ccNumber}">CC Num Error</span>
 
+```
 
+JPA 也是支持自定义查询的
+```
+@Query("Order o where o.deliveryCity='Seattle'")
+List<Order> readOrdersDeliveredInSeattle();
+```
 
-#### 消息转换
+##### HTTPS
+$ keytool -keystore mykeys.jks -genkey -alias tomcat -keyalg RSA
+
+server:
+  port: 8443
+  ssl:
+    key-store: file:///path/to/mykeys.jks
+    key-store-password: letmein
+    key-password: letmein
+    
+##### 配置属性文件元数据
+需要在 META-INF（例如，在项目下的 src/main/resources/META-INF 中）中创建一个名为 
+addition-spring-configuration-metadata.json 的文件
+
+spring-configuration-metadata.json 是默认的
+
+#### 消息队列
+
+JMS java message service，  activeMq Artemis
+RabbitMq  kafka
 
 Messages can be transformed, split, aggregated, routed, and processed by service
 activators in the course of a flow.
 
+####Spring Cloud native
+
+Scaling Eureka
+
 #### hystrix
+
+<dependency>
+<groupId>org.springframework.cloud</groupId>
+<artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>
+</dependency>
+
 management:
     endpoints:
         web:
@@ -121,6 +165,28 @@ implements HealthIndicator {
 @Override
 public Health health() {
 ```
+
+
+自定义信息
+```java
+@Component
+public class TacoCountInfoContributor implements InfoContributor {
+    private TacoRepository tacoRepo;
+    public TacoCountInfoContributor(TacoRepository tacoRepo) {
+    this.tacoRepo = tacoRepo;
+    }
+    @Override
+    public void contribute(Builder builder) {
+        long tacoCount = tacoRepo.count();
+        Map<String, Object> tacoMap = new HashMap<String, Object>();
+        tacoMap.put("count", tacoCount);
+        builder.withDetail("taco-stats", tacoMap);
+    }
+}
+```
+更多自定义属性
+http 参考16章
+jmx 参考18章
 
 安全认证
 ```java

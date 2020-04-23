@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
  * @create: 2020-04-16 13:49
  **/
 @Configuration
-public class BeansConfiguration {
+public class ServiceConfiguration {
 
     @Bean
     public TestService testFMService(){
