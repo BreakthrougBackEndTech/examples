@@ -1,8 +1,29 @@
 #### 基本类型
-string, list, hash, set, zset;  
+#####string
+hashMap， 小于1M， 成被扩容， 大于1M，每次增加1M; 最大512M
+
+#####list
+类似LinkedList  插入O(1), 查找O(n)
+列表元素较少的情况下会使用一块连续的内存存储，这个结构是 ziplist，也即是压缩列表。
+它将所有的元素紧挨着一起存储，分配的是一块连续的内存。当数据量比较多的时候才会改成 quicklist
+
+#####hash
+hashMap rehash的时候 新增一个new 和 old 的结构同时存在， 查询时查2个， 定时任务慢慢移到新的
+
+#####set
+HashSet
+
+
+#####zset  有序列表
+zset 内部的排序功能是通过「跳跃列表」数据结构来实现的
+
+
 对象存放： 
 1. fastjson -> string  整体存放，取的时候占带宽  
 2. hash ，空间多， 根据实际情况需要考虑2种情况更优
+
+数据结构
+String：  
 
 #### 分布式锁
 #####悲观锁
@@ -27,6 +48,7 @@ master 挂 -> slave 重新选主， 如何保证可靠性？
 HyperLogLog, 比set占用的空间小的多
 
 #### 布隆过滤器
+用多个 hash 函数对 key 进行 hash
 推荐去重，  redis 4.0 之前可以用第三包封装的库https://github.com/Baqend/Orestes-Bloomfilter
 
 #### 限流
