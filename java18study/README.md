@@ -85,3 +85,24 @@ volatile只能保证可见性， 单处修改， 多处读 适合使用， 比�
 Lock性能优于synchronized 在1.6之前
 
 锁优化  先自旋，等待几次失败后进入 重量级的互斥锁.  JVM对自旋等待支持会动态优化
+
+### 自定义线程池
+1. tomcat
+先扩展核心线程，再进入队列
+org.apache.tomcat.util.threads.ThreadPoolExecutor
+
+Tomcat 线程池的逻辑：
+```
+如果当前运行的线程，少于corePoolSize，则创建一个新的线程来执行任务。
+如果线程数大于 corePoolSize了，Tomcat 的线程不会直接把线程加入到无界的阻塞队列中，而是去判断，submittedCount（已经提交线程数）是否等于 maximumPoolSize。
+如果等于，表示线程池已经满负荷运行，不能再创建线程了，直接把线程提交到队列，
+如果不等于，则需要判断，是否有空闲线程可以消费。
+如果有空闲线程则加入到阻塞队列中，等待空闲线程消费。
+如果没有空闲线程，尝试创建新的线程。（这一步保证了使用无界队列，仍然可以利用线程的 maximumPoolSize）。
+如果总线程数达到 maximumPoolSize，则继续尝试把线程加入 BlockingQueue 中。
+如果 BlockingQueue 达到上限（假如设置了上限），被默认线程池启动拒绝策略，tomcat 线程池会 catch 住拒绝策略抛出的异常，再次把尝试任务加入中 BlockingQueue 中。
+再次加入失败，启动拒绝策略。
+```
+2. snmp4j
+线程数量是固定的， 如果没有可用的线程, wait
+利用网卡的buffer进行缓存，而不是队列
