@@ -230,7 +230,7 @@ public class ArrayType {
         while (i != j) { //顺序很重要，要先从右边开始找
             while (nums[j] >= temp && i < j)
                 j--;
-            while (nums[i] <= temp && i < j)//再找右边的
+            while (nums[i] <= temp && i < j)//再找左边的
                 i++;
             if (i < j)//交换两个数在数组中的位置
             {
