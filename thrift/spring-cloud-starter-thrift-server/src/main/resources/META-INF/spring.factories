@@ -1,0 +1,3 @@
+com.luffy.rpc.thrift.server.annotation.EnableThriftServer=\
+com.luffy.rpc.thrift.server.ThriftServerAutoConfiguration,\
+com.luffy.rpc.thrift.server.ThriftServerDiscoveryConfiguration

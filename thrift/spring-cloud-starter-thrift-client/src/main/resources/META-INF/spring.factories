@@ -1,0 +1,2 @@
+com.luffy.rpc.thrift.client.annotation.EnableThriftClient=\
+com.luffy.rpc.thrift.client.ThriftClientAutoConfiguration

@@ -1,0 +1,41 @@
+server:
+  port: 8083
+
+spring:
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        register: true
+        register-health-check: true
+        health-check-interval: 10s
+        tags:
+          - calculator-8083
+          - http
+        health-check-path: /health
+        service-name: thrift-calculator-rest-examples
+        instance-id: ${spring.cloud.consul.discovery.service-name}:${spring.cloud.client.ipAddress}:${server.port}
+        prefer-ip-address: true
+  thrift:
+    server:
+      service-id: thrift-calculator-rpc-examples
+      service-model: threadPool
+      port: 25001
+      worker-queue-capacity: 1000
+      thread-pool:
+        min-worker-threads: 5
+        max-worker-threads: 10
+        request-timeout: 5
+        keep-alived-time: 2
+      discovery:
+        enabled: true
+        host: localhost
+        port: 8500
+        tags:
+          - threadPool
+          - calculator-25001
+        health-check:
+          enabled: true
+          check-interval: 10
+          check-timeout: 3

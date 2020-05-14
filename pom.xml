@@ -20,6 +20,7 @@
         <module>rabbitmq</module>
         <module>mq-transaction</module>
         <module>zoomkeeper</module>
+        <module>thrift</module>
     </modules>
 
     <build>
