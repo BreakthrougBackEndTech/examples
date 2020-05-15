@@ -31,7 +31,7 @@ public class ThriftServerProperties {
      * simple: 单线程阻塞模型
      * nonBlocking: 单线程非阻塞模型
      * threadPool: 线程池同步模型
-     * hsHa: 半同步半异步模型
+     * hsHa: 半同步半异步模型  NIO 异步，  rpc处理逻辑同步
      * threadedSelector: 线程池选择器模型
      * </p>
      */

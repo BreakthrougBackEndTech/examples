@@ -61,7 +61,7 @@ public class ThriftServerAutoConfiguration implements ApplicationContextAware {
                 final Object targetBean = target;
                 TargetSource targetSource = ((Advised) target).getTargetSource();
                 if (LOGGER.isDebugEnabled()) {
-                    LOGGER.debug("Target object {} uses cglib proxy");
+                    LOGGER.debug("Target object {} uses cglib proxy"); //感觉还可能是 jdk proxy
                 }
 
                 try {

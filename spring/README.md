@@ -86,6 +86,13 @@ turbine:
     
 http://localhost:8989/turbine.stream 监控
 
+还有一个轻量级熔断器 CircuitBreaker  failsafe
+<dependency>
+  <groupId>net.jodah</groupId>
+  <artifactId>failsafe</artifactId>
+  <version>2.3.5</version>
+</dependency>
+
 #### Actuator
 ```
 GET /auditevents Produces a report of any audit events that have
