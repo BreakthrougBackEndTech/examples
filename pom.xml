@@ -19,7 +19,7 @@
         <module>spring</module>
         <module>rabbitmq</module>
         <module>mq-transaction</module>
-        <module>zoomkeeper</module>
+        <module>zookeeper</module>
         <module>thrift</module>
     </modules>
 

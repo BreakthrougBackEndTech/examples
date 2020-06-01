@@ -118,6 +118,7 @@ public class ThriftClientAdvice implements MethodInterceptor {
                         invocationMethod.getName(),
                         invocationMethod.getParameterTypes());
 
+                //TODO Failsafe 简化代码
                 return ReflectionUtils.invokeMethod(cachedMethod, client, args);
 
             } catch (IllegalArgumentException | IllegalAccessException | InstantiationException | SecurityException | NoSuchMethodException e) {

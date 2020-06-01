@@ -14,7 +14,7 @@
     
 if all return yes,  协调者提交事物
    else any one return no 或 timeout
-![image](/zoomkeeper/img/2pc.jpg)
+![image](/zookeeper/img/2pc.jpg)
 #####3PC
 
 1. Can Commit
@@ -52,7 +52,7 @@ if any one no or timeout
 在阶段三， 无论协调者故障 或 网路故障（do commit or abort消息丢失）
 参与者默认执行本地事务提交
 
-![image](/zoomkeeper/img/3pc.jpg)
+![image](/zookeeper/img/3pc.jpg)
 
 2PC/3PC 都会出现数据不一致的情况
 3PC阻塞范围更小， 性能好于2PC
@@ -66,7 +66,7 @@ if any one no or timeout
     Proposer
     Acceptor
     Learners
-![image](/zoomkeeper/img/paxos role.jpg)
+![image](/zookeeper/img/paxos role.jpg)
 提案（Proposal）。最终要达成一致的value就在提案里。
 
 Paxos算法分为两个阶段。具体如下：
@@ -87,11 +87,11 @@ Paxos算法分为两个阶段。具体如下：
 
 (b) 如果Acceptor收到一个针对编号为N的提案的Accept请求，只要该Acceptor没有对编号大于N的Prepare请求做出过响应，
 它就接受该提案。
-![image](/zoomkeeper/img/paxos algorithm flow.jpg)
+![image](/zookeeper/img/paxos algorithm flow.jpg)
 
 
 通过选取主Proposer，就可以保证Paxos算法的活性。至此，我们得到一个既能保证安全性，又能保证活性的分布式一致性算法——Paxos算法
-![image](/zoomkeeper/img/paxos liveness.jpg)
+![image](/zookeeper/img/paxos liveness.jpg)
 ####Zab
 leader follower obsever
 所有事务请求必须由一个全局唯一的服务器来协调处理
@@ -143,7 +143,7 @@ Leader 选举过程
 ####Consist Hash
 有节点挂掉的时候 只影响1个或很少的节点，  避免hash算法导致的很多或所有节点迁移，缓存失效验证，雪崩
 
-### Zoomkeeper
+### zookeeper
 Zookeeper是一个开源的分布式协调服务，其设计目标是将那些复杂的且容易出错的分布式一致性服务封装起来，
 构成一个高效可靠的原语集，并以一些列简单的接口提供给用户使用。其是一个典型的分布式数据一致性的解决方案，
 分布式应用程序可以基于它实现诸如数据发布/发布、负载均衡、命名服务、分布式协调/通知、集群管理、Master选举、
