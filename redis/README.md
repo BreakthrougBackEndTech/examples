@@ -116,7 +116,7 @@ Redis 的主从数据是异步同步的，所以分布式的 Redis 系统并不�
 #### 集群
 1. 哨兵
 2. Codis  key hash %1024（可配置)  --> 对应具体的redis实例，  多个codis组成集群， 槽位映射关系保存在
-zoomkeeper 或 etcd;  不支持事物， rename 操作很危险
+zookeeper 或 etcd;  不支持事物， rename 操作很危险
 3. RedisCluster  key  hash % 16384  当客户端向一个错误的节点发出了指令，该节点会发现指令的 key 所在的槽位并不归自己管理，
 这时它会向客户端发送一个特殊的跳转指令携带目标操作的节点地址，告诉客户端去连这个节点去获取数据。
 
