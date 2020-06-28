@@ -1,10 +1,11 @@
-package tacos;
+package tacos.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import tacos.TestService;
 
 import java.beans.ConstructorProperties;
 
@@ -33,7 +34,7 @@ public class HomeController {
         System.out.println(testPMService.value);
 
         System.out.println(testService.value);
-        return "home";
+        return "index";
     }
 }
 
