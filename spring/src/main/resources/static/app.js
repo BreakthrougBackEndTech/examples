@@ -26,6 +26,7 @@ function connect() {
         console.log('Connected: ' + frame);
         stompClient.subscribe('/topic/chat/' + $("#lesson").val(), function (greeting) {
             showGreeting(JSON.parse(greeting.body).context);
+            showGreeting(JSON.parse(greeting.body).headCount);
         });
     });
 }

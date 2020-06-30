@@ -95,5 +95,10 @@ public class TimeNewAPI {
         LocalDateTime parsed = LocalDateTime.parse("Nov 03, 2014 - 07:13", formatter);
         String string = formatter.format(parsed);
         System.out.println(string);     // Nov 03, 2014 - 07:13
+
+
+        //获取秒数 + 30分钟
+        System.out.println(LocalDateTime.now().plusMinutes(30).toEpochSecond(ZonedDateTime.now().getOffset()));
+        System.out.println(System.currentTimeMillis()/1000 + 1800);
     }
 }
