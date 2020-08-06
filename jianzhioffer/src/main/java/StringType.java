@@ -50,6 +50,55 @@ public class StringType {
         return true;
     }
 
+    /**
+     * 五笔编码
+     * <p>
+     * 五笔的编码范围是a ~ y的25个字母，从1位到4位的编码，如果我们把五笔的编码按字典序排序，形成一个数组如下：
+     * a, aa, aaa, aaaa, aaab, aaac, … …, b, ba, baa, baaa, baab, baac … …, yyyw, yyyx, yyyy
+     * 其中a的Index为0，aa的Index为1，aaa的Index为2，以此类推。
+     * 编写一个函数，输入是任意一个编码，比如baca，输出这个编码对应的Index；
+     * 编写一个函数，输入是任意一个Index，比如12345，输出这个Index对应的编码。
+     */
+    public int getIndexFromString(String str) {
+        int NUM = 25;
+        int[] SUM = new int[4];
+        int N = 3;
+
+        SUM[0] = 1;
+        for (int i = 1; i < 4; i++) {
+            SUM[i] = NUM * (SUM[i - 1]) + 1;
+        }
+
+        int index = str.length() - 1;
+        for (char ch : str.toCharArray()) {
+            index += (ch - 'a') * SUM[N--];
+        }
+
+        return index;
+    }
+
+    public String getStringFromIndex(int index) {
+        int NUM = 25;
+        int[] SUM = new int[4];
+        int N = 3;
+
+        SUM[0] = 1;
+        for (int i = 1; i < 4; i++) {
+            SUM[i] = NUM * (SUM[i - 1]) + 1;
+        }
+
+        StringBuilder sb = new StringBuilder();
+        while (index >= 0) {
+            sb.append((char) ('a' + index / SUM[N]));
+            index %= SUM[N];
+            --index;
+            N--;
+        }
+
+        return sb.toString();
+    }
+
+
     private void rotateLeftChars(char[] chars, int index) {
         rotateCharsInScope(chars, 0, index);
         rotateCharsInScope(chars, index + 1, chars.length - 1);
