@@ -30,9 +30,21 @@
     
 ### mq-transaction
     消息队列最终一致性
+    
+### distributed-transaction
+    分布式事务
+    JTA
+    TCC
+    Seata
 
-### TODO
-Spring  zookeeper
+### Spring
+    websocket
+    异步请求ThreadPoolTaskExecutor
+
+### zookeeper
+    2PC 3PC
+    RAFT
+    paxos
     
 微信公众号
 ![image](/minikube/img/weixin.jpg)
