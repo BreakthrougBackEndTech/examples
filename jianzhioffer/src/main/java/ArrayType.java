@@ -26,7 +26,7 @@ public class ArrayType {
 
 
     public List<Integer> findDuplicates(int[] nums) {
-        Set<Integer> set = new HashSet<>();
+       /* Set<Integer> set = new HashSet<>();
 
         for (int i = 0; i < nums.length; i++) {
             nums[i] -= 1;
@@ -44,15 +44,9 @@ public class ArrayType {
             }
         }
 
-        List<Integer> list = new ArrayList<>();
 
-//        return set.stream().map(x->x+1).collect(Collectors.toList());
+        return set.stream().map(x->x+1).collect(Collectors.toList());*/
 
-        for (Integer i : set) {
-            list.add(i + 1);
-        }
-
-        return list;
 
          //最高效的算法
         /*List<Integer> ret = new ArrayList<>();
@@ -67,15 +61,16 @@ public class ArrayType {
         return ret;*/
 
         //使用数组比使用包装类更快
-        /*int[] burket = new int[nums.length+1];
+        int[] burket = new int[nums.length + 1];
         for(int i=0; i<nums.length; i++) {
             burket[nums[i]]++;
         }
+
         ArrayList<Integer> list = new ArrayList<>();
         for(int i=0; i<nums.length+1; i++) {
             if(burket[i] == 2) list.add(i);
         }
-        return list;*/
+        return list;
     }
 
     /**
