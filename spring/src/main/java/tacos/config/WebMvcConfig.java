@@ -22,10 +22,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
         taskExecutor.setQueueCapacity(10000);
 
-
-    /*    taskExecutor.setThreadFactory(new BasicThreadFactory.Builder()
-                .namingPattern("namePattern" + "-%d")
-                .build());*/
+        taskExecutor.setThreadNamePrefix("Async thread");
+        
         return taskExecutor;
     }
 
