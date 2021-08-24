@@ -12,17 +12,28 @@
     <artifactId>bytetcc-springboot-consumer-demo</artifactId>
 
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-parent</artifactId>
+                <version>2.0.4.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
-        <dependency>
-            <!-- Import dependency management from Spring Boot -->
-            <!--https://stackoverflow.com/questions/21317006/spring-boot-parent-pom-when-you-already-have-a-parent-pom-->
+  <!--      <dependency>
+            &lt;!&ndash; Import dependency management from Spring Boot &ndash;&gt;
+            &lt;!&ndash;https://stackoverflow.com/questions/21317006/spring-boot-parent-pom-when-you-already-have-a-parent-pom&ndash;&gt;
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-dependencies</artifactId>
             <version>2.0.4.RELEASE</version>
             <type>pom</type>
             <scope>import</scope>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
