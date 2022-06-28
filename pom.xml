@@ -22,6 +22,7 @@
         <module>zookeeper</module>
         <module>thrift</module>
         <module>distributed-transaction</module>
+        <module>influxdb</module>
     </modules>
 
     <build>

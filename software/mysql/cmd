@@ -30,4 +30,7 @@ sharding jdbc
 SpringBoot 使用sharding jdbc进行分库分表 https://blog.csdn.net/tianyaleixiaowu/article/details/70242971#t3
 https://github.com/sharding-sphere/sharding-sphere
 
+baomidou 读写分离
+https://calm_java.gitee.io/blog/2020/02/13/labs-springboot2-dynamic-datasource/
+
 代理架构推荐 使用 MyCat 或者Atlas
